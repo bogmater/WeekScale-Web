@@ -96,7 +96,7 @@ Use these settings:
 | Health check path | `/healthz` |
 | Health check port | `3333` |
 
-In **General > Advanced**, enable **Include Source Commit in Build**. Coolify then supplies `SOURCE_COMMIT` to the Docker build, and the application uses it to invalidate immutable static-asset URLs after each deployment.
+The Docker build uses Coolify's `SOURCE_COMMIT` when available. On Coolify versions that do not expose that option, it automatically derives a revision from the embedded assets instead. No additional build setting is required for static-asset cache invalidation.
 
 Set these runtime environment variables:
 

@@ -10,11 +10,15 @@ RUN go mod download
 COPY . .
 
 ARG SOURCE_COMMIT=unavailable
-RUN CGO_ENABLED=0 GOOS=linux go build \
-    -trimpath \
-    -ldflags="-s -w -X bogmater/weekscale-web/internal/version.buildRevision=${SOURCE_COMMIT}" \
-    -o /out/weekscale-web \
-    ./cmd/web
+RUN BUILD_REVISION="${SOURCE_COMMIT}"; \
+    if [ -z "${BUILD_REVISION}" ] || [ "${BUILD_REVISION}" = "unavailable" ]; then \
+        BUILD_REVISION="$(find assets -type f -exec sha256sum {} + | sort | sha256sum | cut -c1-12)"; \
+    fi; \
+    CGO_ENABLED=0 GOOS=linux go build \
+        -trimpath \
+        -ldflags="-s -w -X bogmater/weekscale-web/internal/version.buildRevision=${BUILD_REVISION}" \
+        -o /out/weekscale-web \
+        ./cmd/web
 
 FROM alpine:3.22
 
