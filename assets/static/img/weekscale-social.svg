@@ -6,9 +6,9 @@
   </g>
   <circle cx="960" cy="295" r="220" fill="#8ED1C7" fill-opacity=".08"/>
   <text x="74" y="105" fill="#8ED1C7" font-family="Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="4">WEEKSCALE</text>
-  <text x="70" y="245" fill="#F5FAF9" font-family="Arial, sans-serif" font-size="68" font-weight="700" letter-spacing="-3">See the week.</text>
-  <text x="70" y="325" fill="#8ED1C7" font-family="Georgia, serif" font-size="70" font-style="italic">Not the noise.</text>
-  <text x="74" y="395" fill="#AEB9C7" font-family="Arial, sans-serif" font-size="25">Private weight tracking in weekly perspective.</text>
+  <text x="70" y="245" fill="#F5FAF9" font-family="Arial, sans-serif" font-size="68" font-weight="700" letter-spacing="-3">Your week</text>
+  <text x="70" y="325" fill="#8ED1C7" font-family="Georgia, serif" font-size="70" font-style="italic">is the unit.</text>
+  <text x="74" y="395" fill="#AEB9C7" font-family="Arial, sans-serif" font-size="25">Calendar-week averages. No rolling 7-day window.</text>
   <g transform="translate(837 172) scale(.24)">
     <path fill="#172033" d="M224 0h576a224 224 0 0 1 224 224v576a224 224 0 0 1-224 224H224A224 224 0 0 1 0 800V224A224 224 0 0 1 224 0Z"/>
     <path fill="#F5FAF9" d="M95 299h120l143 359 81-126-13 126-61 149q-7 16-22 16h-14q-16 0-22-16L95 299Z"/>
