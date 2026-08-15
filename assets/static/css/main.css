@@ -1435,6 +1435,18 @@ a.button-secondary:hover {
     white-space: nowrap !important;
 }
 
+.turnstile-widget {
+    min-height: 140px;
+    display: grid;
+    place-items: center;
+    margin: 4px 0 21px;
+    overflow: hidden;
+}
+
+.turnstile-widget .cf-turnstile {
+    width: 100%;
+}
+
 .error-page {
     min-height: 66vh;
     display: grid;

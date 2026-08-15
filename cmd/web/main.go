@@ -11,6 +11,7 @@ import (
 
 	"bogmater/weekscale-web/internal/env"
 	"bogmater/weekscale-web/internal/smtp"
+	"bogmater/weekscale-web/internal/turnstile"
 	"bogmater/weekscale-web/internal/version"
 
 	"github.com/lmittmann/tint"
@@ -39,6 +40,10 @@ type config struct {
 	beta struct {
 		email string
 	}
+	turnstile struct {
+		siteKey   string
+		secretKey string
+	}
 	smtp struct {
 		host     string
 		port     int
@@ -52,6 +57,7 @@ type application struct {
 	config          config
 	logger          *slog.Logger
 	mailer          *smtp.Mailer
+	turnstile       turnstileVerifier
 	wg              sync.WaitGroup
 	formMu          sync.Mutex
 	formRequests    map[string][]time.Time
@@ -66,6 +72,8 @@ func run(logger *slog.Logger) error {
 	cfg.notifications.email = env.GetString("NOTIFICATIONS_EMAIL", "")
 	cfg.support.email = env.GetString("SUPPORT_EMAIL", "")
 	cfg.beta.email = env.GetString("BETA_EMAIL", "")
+	cfg.turnstile.siteKey = env.GetString("TURNSTILE_SITE_KEY", "")
+	cfg.turnstile.secretKey = env.GetString("TURNSTILE_SECRET_KEY", "")
 	cfg.smtp.host = env.GetString("SMTP_HOST", "example.smtp.host")
 	cfg.smtp.port = env.GetInt("SMTP_PORT", 25)
 	cfg.smtp.username = env.GetString("SMTP_USERNAME", "example_username")
@@ -87,9 +95,10 @@ func run(logger *slog.Logger) error {
 	}
 
 	app := &application{
-		config: cfg,
-		logger: logger,
-		mailer: mailer,
+		config:    cfg,
+		logger:    logger,
+		mailer:    mailer,
+		turnstile: turnstile.NewClient(cfg.turnstile.secretKey),
 	}
 
 	return app.serveHTTP()

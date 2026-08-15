@@ -25,6 +25,7 @@ func TestSecurityHeaders(t *testing.T) {
 		assert.Equal(t, res.Header.Get("Referrer-Policy"), "origin-when-cross-origin")
 		assert.Equal(t, res.Header.Get("X-Content-Type-Options"), "nosniff")
 		assert.Equal(t, res.Header.Get("X-Frame-Options"), "deny")
+		assert.True(t, strings.Contains(res.Header.Get("Content-Security-Policy"), "https://challenges.cloudflare.com"))
 	})
 }
 

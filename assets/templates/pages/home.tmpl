@@ -9,6 +9,7 @@
 <meta name="twitter:title" content="WeekScale: Weekly Average Weight Tracker for iOS and Android">
 <meta name="twitter:description" content="Your week is the unit. Compare calendar-week averages without a rolling 7-day window.">
 {{if .BetaSent}}<meta name="robots" content="noindex,follow">{{end}}
+{{if .TurnstileSiteKey}}<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>{{end}}
 {{end}}
 
 {{define "page:main"}}
@@ -215,6 +216,12 @@
                 <label for="beta-company">Leave this field empty</label>
                 <input id="beta-company" name="Company" type="text" tabindex="-1" autocomplete="off">
             </div>
+
+            {{if .TurnstileSiteKey}}
+            <div class="turnstile-widget">
+                <div class="cf-turnstile" data-sitekey="{{.TurnstileSiteKey}}" data-action="beta" data-theme="dark" data-size="compact"></div>
+            </div>
+            {{end}}
 
             <button class="button button-primary button-submit" type="submit">Join the beta</button>
             <p class="beta-consent">By joining, you agree that we can email you about WeekScale beta testing. See our <a href="/privacy">privacy notice</a>.</p>

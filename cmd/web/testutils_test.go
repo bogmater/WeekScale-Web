@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"io"
 	"log/slog"
@@ -11,10 +12,28 @@ import (
 	"testing"
 
 	"bogmater/weekscale-web/internal/smtp"
+	"bogmater/weekscale-web/internal/turnstile"
 
 	"github.com/andybalholm/cascadia"
 	"golang.org/x/net/html"
 )
+
+type mockTurnstileVerifier struct {
+	result turnstile.Result
+	err    error
+}
+
+func (m *mockTurnstileVerifier) Verify(ctx context.Context, token, remoteIP string) (turnstile.Result, error) {
+	if m.err != nil || m.result.Success {
+		return m.result, m.err
+	}
+
+	return turnstile.Result{
+		Success:  true,
+		Hostname: "www.weekscale.net",
+		Action:   token,
+	}, nil
+}
 
 func newTestApplication(t *testing.T) *application {
 	app := new(application)
@@ -25,6 +44,9 @@ func newTestApplication(t *testing.T) *application {
 	app.config.baseURL = "https://www.weekscale.net"
 	app.config.beta.email = "beta@example.com"
 	app.config.support.email = "support@example.com"
+	app.config.turnstile.siteKey = "test-site-key"
+	app.config.turnstile.secretKey = "test-secret-key"
+	app.turnstile = &mockTurnstileVerifier{}
 
 	return app
 }

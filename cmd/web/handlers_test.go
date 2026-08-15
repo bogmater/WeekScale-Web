@@ -19,6 +19,8 @@ func TestHome(t *testing.T) {
 		res := send(t, req, app.routes())
 		assert.Equal(t, res.StatusCode, http.StatusOK)
 		assert.True(t, containsPageTag(t, res.Body, "home"))
+		assert.True(t, containsHTMLNode(t, res.Body, `.cf-turnstile[data-action="beta"][data-sitekey="test-site-key"]`))
+		assert.True(t, !strings.Contains(res.Body, "test-secret-key"))
 	})
 }
 
@@ -54,6 +56,9 @@ func TestContentPages(t *testing.T) {
 			assert.Equal(t, res.StatusCode, http.StatusOK)
 			assert.True(t, containsPageTag(t, res.Body, tt.pageTag))
 			assert.True(t, containsHTMLNode(t, res.Body, `nav a[aria-current="page"]`))
+			if tt.path == "/support" {
+				assert.True(t, containsHTMLNode(t, res.Body, `.cf-turnstile[data-action="support"][data-sitekey="test-site-key"]`))
+			}
 		})
 	}
 }
@@ -61,8 +66,9 @@ func TestContentPages(t *testing.T) {
 func TestSubmitBeta(t *testing.T) {
 	validForm := func() url.Values {
 		return url.Values{
-			"Email":    {"tester@example.com"},
-			"Platform": {"ios"},
+			"Email":                 {"tester@example.com"},
+			"Platform":              {"ios"},
+			"cf-turnstile-response": {"beta"},
 		}
 	}
 
@@ -79,6 +85,32 @@ func TestSubmitBeta(t *testing.T) {
 		assert.Equal(t, len(app.mailer.SentMessages), 1)
 		assert.True(t, strings.Contains(app.mailer.SentMessages[0], "tester@example.com"))
 		assert.True(t, strings.Contains(app.mailer.SentMessages[0], "iOS"))
+	})
+
+	t.Run("rejects a missing Turnstile token", func(t *testing.T) {
+		app := newTestApplication(t)
+		req := newTestRequest(t, http.MethodPost, "/beta")
+		req.PostForm = validForm()
+		req.PostForm.Del("cf-turnstile-response")
+
+		res := send(t, req, app.routes())
+
+		assert.Equal(t, res.StatusCode, http.StatusUnprocessableEntity)
+		assert.True(t, strings.Contains(res.Body, "Complete the security verification"))
+		assert.Equal(t, len(app.mailer.SentMessages), 0)
+	})
+
+	t.Run("rejects a mismatched Turnstile action", func(t *testing.T) {
+		app := newTestApplication(t)
+		req := newTestRequest(t, http.MethodPost, "/beta")
+		req.PostForm = validForm()
+		req.PostForm.Set("cf-turnstile-response", "support")
+
+		res := send(t, req, app.routes())
+
+		assert.Equal(t, res.StatusCode, http.StatusUnprocessableEntity)
+		assert.True(t, strings.Contains(res.Body, "Security verification failed"))
+		assert.Equal(t, len(app.mailer.SentMessages), 0)
 	})
 
 	t.Run("renders beta validation errors", func(t *testing.T) {
@@ -120,14 +152,28 @@ func TestSubmitBeta(t *testing.T) {
 		assert.Equal(t, res.StatusCode, http.StatusServiceUnavailable)
 		assert.True(t, strings.Contains(res.Body, "temporarily unavailable"))
 	})
+
+	t.Run("fails closed without Turnstile configuration", func(t *testing.T) {
+		app := newTestApplication(t)
+		app.config.turnstile.secretKey = ""
+		req := newTestRequest(t, http.MethodPost, "/beta")
+		req.PostForm = validForm()
+
+		res := send(t, req, app.routes())
+
+		assert.Equal(t, res.StatusCode, http.StatusServiceUnavailable)
+		assert.True(t, strings.Contains(res.Body, "Security verification is temporarily unavailable"))
+		assert.Equal(t, len(app.mailer.SentMessages), 0)
+	})
 }
 
 func TestSubmitSupport(t *testing.T) {
 	validForm := func() url.Values {
 		return url.Values{
-			"Name":    {"Alex Example"},
-			"Email":   {"alex@example.com"},
-			"Message": {"I need some help with WeekScale."},
+			"Name":                  {"Alex Example"},
+			"Email":                 {"alex@example.com"},
+			"Message":               {"I need some help with WeekScale."},
+			"cf-turnstile-response": {"support"},
 		}
 	}
 

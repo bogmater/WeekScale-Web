@@ -30,6 +30,8 @@ The support and beta forms can be viewed without SMTP configuration. Sending a m
 | `HTTP_PORT` | `3333` | HTTP listener port |
 | `SUPPORT_EMAIL` | empty | Private recipient for support messages |
 | `BETA_EMAIL` | empty | Private recipient for beta signup messages |
+| `TURNSTILE_SITE_KEY` | empty | Public Cloudflare Turnstile widget key |
+| `TURNSTILE_SECRET_KEY` | empty | Private Cloudflare Turnstile verification key |
 | `SMTP_HOST` | example value | SMTP server hostname |
 | `SMTP_PORT` | `25` | SMTP server port |
 | `SMTP_USERNAME` | example value | SMTP login username |
@@ -42,6 +44,8 @@ Example:
 ```bash
 export SUPPORT_EMAIL="support@example.com"
 export BETA_EMAIL="beta@example.com"
+export TURNSTILE_SITE_KEY="your-turnstile-site-key"
+export TURNSTILE_SECRET_KEY="your-turnstile-secret-key"
 export SMTP_HOST="smtp.resend.com"
 export SMTP_PORT="587"
 export SMTP_USERNAME="resend"
@@ -58,6 +62,7 @@ Never commit production SMTP credentials.
 - Input is length-limited, validated, and escaped by the email templates.
 - Cross-site browser submissions are rejected.
 - A hidden honeypot absorbs simple form-filling bots.
+- Cloudflare Turnstile tokens are verified server-side for the expected hostname and form action.
 - Support and beta submissions are independently limited to three per IP address per hour.
 - Email delivery runs through the application's managed background-task mechanism.
 
@@ -107,6 +112,8 @@ BASE_URL=https://www.weekscale.net
 HTTP_PORT=3333
 SUPPORT_EMAIL=your-private-support-address
 BETA_EMAIL=your-private-beta-address
+TURNSTILE_SITE_KEY=your-turnstile-site-key
+TURNSTILE_SECRET_KEY=your-turnstile-secret-key
 SMTP_HOST=smtp.resend.com
 SMTP_PORT=587
 SMTP_USERNAME=resend
@@ -114,6 +121,8 @@ SMTP_PASSWORD=re_your_resend_api_key
 SMTP_FROM=WeekScale <hello@weekscale.net>
 ```
 
-Keep SMTP variables runtime-only in Coolify. `NOTIFICATIONS_EMAIL` is optional and receives server-error reports when configured. No persistent volume or database is required.
+Keep SMTP variables and `TURNSTILE_SECRET_KEY` runtime-only in Coolify. `TURNSTILE_SITE_KEY` is intentionally public. `NOTIFICATIONS_EMAIL` is optional and receives server-error reports when configured. No persistent volume or database is required.
+
+Create one Cloudflare Turnstile widget for `www.weekscale.net`. Both forms use that widget with separate `beta` and `support` action names, which are validated by the server. The forms fail closed with a temporary-unavailable response when either Turnstile key is missing.
 
 Point the `www` DNS record to the Coolify server before adding the HTTPS domain so Coolify can issue its Let's Encrypt certificate. If the bare `weekscale.net` domain will also be used, redirect it to `https://www.weekscale.net` rather than serving duplicate content.

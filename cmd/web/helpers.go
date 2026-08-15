@@ -15,11 +15,12 @@ func (app *application) newTemplateData(r *http.Request) map[string]any {
 	}
 
 	data := map[string]any{
-		"CanonicalURL":   siteURL + r.URL.Path,
-		"CurrentPath":    r.URL.Path,
-		"SiteURL":        siteURL,
-		"SocialImageURL": siteURL + "/static/img/weekscale-social.png",
-		"Version":        assetVersion,
+		"CanonicalURL":     siteURL + r.URL.Path,
+		"CurrentPath":      r.URL.Path,
+		"SiteURL":          siteURL,
+		"SocialImageURL":   siteURL + "/static/img/weekscale-social.png",
+		"TurnstileSiteKey": app.config.turnstile.siteKey,
+		"Version":          assetVersion,
 	}
 
 	return data

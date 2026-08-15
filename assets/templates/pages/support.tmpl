@@ -9,6 +9,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:title" content="WeekScale Support">
 <meta name="twitter:description" content="Get help with WeekScale or send a private support message.">
+{{if .TurnstileSiteKey}}<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>{{end}}
 {{end}}
 
 {{define "page:main"}}
@@ -65,6 +66,12 @@
                 <label for="website">Leave this field empty</label>
                 <input id="website" name="Website" type="text" tabindex="-1" autocomplete="off">
             </div>
+
+            {{if .TurnstileSiteKey}}
+            <div class="turnstile-widget">
+                <div class="cf-turnstile" data-sitekey="{{.TurnstileSiteKey}}" data-action="support" data-theme="dark" data-size="compact"></div>
+            </div>
+            {{end}}
 
             <div class="form-actions">
                 <p>By sending, you agree that the submitted details can be used to respond to this request.</p>

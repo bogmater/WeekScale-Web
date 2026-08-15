@@ -1,12 +1,15 @@
 package main
 
 import (
+	"context"
 	"net/http"
+	"net/url"
 	"strings"
 	"time"
 
 	"bogmater/weekscale-web/internal/request"
 	"bogmater/weekscale-web/internal/response"
+	"bogmater/weekscale-web/internal/turnstile"
 	"bogmater/weekscale-web/internal/validator"
 
 	"github.com/tomasen/realip"
@@ -18,18 +21,24 @@ const (
 )
 
 type supportForm struct {
-	Name      string
-	Email     string
-	Message   string
-	Website   string
-	Validator validator.Validator `form:"-"`
+	Name              string
+	Email             string
+	Message           string
+	Website           string
+	TurnstileResponse string              `form:"cf-turnstile-response"`
+	Validator         validator.Validator `form:"-"`
 }
 
 type betaForm struct {
-	Email     string
-	Platform  string
-	Company   string
-	Validator validator.Validator `form:"-"`
+	Email             string
+	Platform          string
+	Company           string
+	TurnstileResponse string              `form:"cf-turnstile-response"`
+	Validator         validator.Validator `form:"-"`
+}
+
+type turnstileVerifier interface {
+	Verify(ctx context.Context, token, remoteIP string) (turnstile.Result, error)
 }
 
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
@@ -69,6 +78,13 @@ func (app *application) submitBeta(w http.ResponseWriter, r *http.Request) {
 
 	if form.Validator.HasErrors() {
 		app.renderBetaForm(w, r, http.StatusUnprocessableEntity, form)
+		return
+	}
+
+	status, message := app.checkTurnstile(r, form.TurnstileResponse, "beta")
+	if status != 0 {
+		form.Validator.AddError(message)
+		app.renderBetaForm(w, r, status, form)
 		return
 	}
 
@@ -176,6 +192,13 @@ func (app *application) submitSupport(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	status, message := app.checkTurnstile(r, form.TurnstileResponse, "support")
+	if status != 0 {
+		form.Validator.AddError(message)
+		app.renderSupportForm(w, r, status, form)
+		return
+	}
+
 	if app.config.support.email == "" {
 		form.Validator.AddError("Support messaging is temporarily unavailable. Please try again later.")
 		app.renderSupportForm(w, r, http.StatusServiceUnavailable, form)
@@ -243,4 +266,26 @@ func (app *application) allowFormSubmission(key string, now time.Time) bool {
 
 	app.formRequests[key] = append(requests, now)
 	return true
+}
+
+func (app *application) checkTurnstile(r *http.Request, token, expectedAction string) (int, string) {
+	if app.config.turnstile.siteKey == "" || app.config.turnstile.secretKey == "" || app.turnstile == nil {
+		return http.StatusServiceUnavailable, "Security verification is temporarily unavailable. Please try again later."
+	}
+	if strings.TrimSpace(token) == "" {
+		return http.StatusUnprocessableEntity, "Complete the security verification and try again."
+	}
+
+	result, err := app.turnstile.Verify(r.Context(), token, realip.FromRequest(r))
+	if err != nil {
+		app.logger.Warn("Turnstile verification unavailable", "error", err)
+		return http.StatusServiceUnavailable, "Security verification is temporarily unavailable. Please try again later."
+	}
+
+	canonicalURL, err := url.Parse(app.siteURL())
+	if err != nil || !result.Success || result.Action != expectedAction || !strings.EqualFold(result.Hostname, canonicalURL.Hostname()) {
+		return http.StatusUnprocessableEntity, "Security verification failed. Refresh the page and try again."
+	}
+
+	return 0, ""
 }
