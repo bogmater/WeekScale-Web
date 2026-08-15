@@ -27,6 +27,7 @@ html {
 body {
     min-width: 320px;
     margin: 0;
+    overflow-x: hidden;
     color: var(--paper);
     background:
         radial-gradient(circle at 85% 5%, rgba(73, 214, 197, 0.08), transparent 28rem),
@@ -330,6 +331,7 @@ a.button-secondary:hover {
 
 .phone {
     position: relative;
+    max-width: 100%;
     overflow: hidden;
     background: #070b12;
     border: 7px solid #263148;
@@ -356,8 +358,7 @@ a.button-secondary:hover {
 }
 
 .phone-hero {
-    width: 300px;
-    height: 612px;
+    width: min(300px, 100%);
     transform: rotate(2deg);
 }
 
@@ -736,10 +737,9 @@ a.button-secondary:hover {
 .phone-graph {
     position: absolute;
     z-index: 2;
-    top: -60px;
+    top: -30px;
     left: 13%;
-    width: 300px;
-    height: 675px;
+    width: min(300px, calc(100% - 24px));
     transform: rotate(-3deg);
 }
 
@@ -751,17 +751,16 @@ a.button-secondary:hover {
 }
 
 .showcase-visual {
-    min-height: 620px;
     display: grid;
     place-items: center;
+    padding: 48px 24px;
     background: linear-gradient(145deg, rgba(142, 209, 199, 0.15), rgba(23, 32, 51, 0.1));
     border: 1px solid var(--line);
     border-radius: 50% 50% 12px 12px;
 }
 
 .phone-entry {
-    width: 290px;
-    height: 580px;
+    width: min(290px, calc(100% - 24px));
     transform: rotate(2deg);
 }
 
@@ -1414,13 +1413,12 @@ a.button-secondary:hover {
     }
 
     .hero-visual {
-        min-height: 575px;
+        min-height: 620px;
         margin-top: 25px;
     }
 
     .phone-hero {
         width: 270px;
-        height: 550px;
     }
 
     .orbit-one {
@@ -1492,7 +1490,7 @@ a.button-secondary:hover {
     }
 
     .graph-stage {
-        height: 650px;
+        height: 680px;
     }
 
     .phone-graph {
@@ -1505,7 +1503,7 @@ a.button-secondary:hover {
     }
 
     .showcase-visual {
-        min-height: 580px;
+        padding: 36px 24px;
     }
 
     .showcase-copy {
@@ -1585,12 +1583,19 @@ a.button-secondary:hover {
     }
 
     .hero-visual {
-        min-height: 520px;
+        min-height: 560px;
     }
 
     .phone-hero {
         width: 240px;
-        height: 490px;
+    }
+
+    .phone-graph {
+        width: min(270px, calc(100% - 24px));
+    }
+
+    .phone-entry {
+        width: min(260px, calc(100% - 24px));
     }
 
     .orbit-one {

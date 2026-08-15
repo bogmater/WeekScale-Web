@@ -3,7 +3,10 @@ package main
 import (
 	"fmt"
 	"log/slog"
+	"net"
 	"net/http"
+	"net/url"
+	"strings"
 
 	"bogmater/weekscale-web/internal/response"
 
@@ -30,6 +33,30 @@ func (app *application) securityHeaders(next http.Handler) http.Handler {
 		w.Header().Set("Content-Security-Policy", "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self'; style-src 'self'")
 		w.Header().Set("X-Content-Type-Options", "nosniff")
 		w.Header().Set("X-Frame-Options", "deny")
+
+		next.ServeHTTP(w, r)
+	})
+}
+
+func (app *application) canonicalHost(next http.Handler) http.Handler {
+	canonicalURL, err := url.Parse(app.siteURL())
+	if err != nil || !strings.HasPrefix(canonicalURL.Hostname(), "www.") {
+		return next
+	}
+
+	bareHost := strings.TrimPrefix(canonicalURL.Hostname(), "www.")
+
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		requestHost := r.Host
+		if host, _, err := net.SplitHostPort(r.Host); err == nil {
+			requestHost = host
+		}
+
+		if strings.EqualFold(requestHost, bareHost) {
+			target := canonicalURL.Scheme + "://" + canonicalURL.Host + r.URL.RequestURI()
+			http.Redirect(w, r, target, http.StatusPermanentRedirect)
+			return
+		}
 
 		next.ServeHTTP(w, r)
 	})

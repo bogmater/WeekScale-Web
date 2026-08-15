@@ -16,7 +16,9 @@ func (app *application) routes() http.Handler {
 	mux.Use(app.logRequest)
 	mux.Use(app.recoverPanic)
 	mux.Use(app.securityHeaders)
+	mux.Use(app.canonicalHost)
 	mux.Use(middleware.Compress(5))
+	mux.Use(middleware.GetHead)
 
 	fileServer := http.FileServer(http.FS(assets.EmbeddedFiles))
 	mux.Handle("/static/*", app.cacheStaticFiles(fileServer))

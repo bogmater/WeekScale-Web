@@ -31,6 +31,25 @@ func TestRoutes(t *testing.T) {
 		assert.Equal(t, res.Header.Get("Vary"), "Accept-Encoding")
 	})
 
+	t.Run("Serves HEAD requests for public pages", func(t *testing.T) {
+		app := newTestApplication(t)
+		req := newTestRequest(t, http.MethodHead, "/")
+
+		res := send(t, req, app.routes())
+		assert.Equal(t, res.StatusCode, http.StatusOK)
+		assert.Equal(t, res.Header.Get("Content-Type"), "text/html; charset=utf-8")
+	})
+
+	t.Run("Redirects the bare production domain to www", func(t *testing.T) {
+		app := newTestApplication(t)
+		req := newTestRequest(t, http.MethodGet, "/faq?from=apex")
+		req.Host = "weekscale.net"
+
+		res := send(t, req, app.routes())
+		assert.Equal(t, res.StatusCode, http.StatusPermanentRedirect)
+		assert.Equal(t, res.Header.Get("Location"), "https://www.weekscale.net/faq?from=apex")
+	})
+
 	t.Run("Serves the brand mark", func(t *testing.T) {
 		app := newTestApplication(t)
 		req := newTestRequest(t, http.MethodGet, "/static/img/weekscale-mark.svg")
