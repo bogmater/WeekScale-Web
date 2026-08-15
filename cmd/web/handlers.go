@@ -13,8 +13,8 @@ import (
 )
 
 const (
-	supportRequestLimit  = 3
-	supportRequestWindow = time.Hour
+	formSubmissionLimit  = 3
+	formSubmissionWindow = time.Hour
 )
 
 type supportForm struct {
@@ -25,10 +25,82 @@ type supportForm struct {
 	Validator validator.Validator `form:"-"`
 }
 
+type betaForm struct {
+	Email     string
+	Platform  string
+	Company   string
+	Validator validator.Validator `form:"-"`
+}
+
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	data := app.newTemplateData(r)
+	data["BetaForm"] = betaForm{}
+	data["BetaSent"] = r.URL.Query().Get("beta") == "sent"
 
 	err := response.Page(w, http.StatusOK, data, "pages/home.tmpl")
+	if err != nil {
+		app.serverError(w, r, err)
+	}
+}
+
+func (app *application) submitBeta(w http.ResponseWriter, r *http.Request) {
+	if site := r.Header.Get("Sec-Fetch-Site"); site != "" && site != "same-origin" && site != "same-site" {
+		app.badRequest(w, r, errCrossSiteForm)
+		return
+	}
+
+	var form betaForm
+	err := request.DecodePostForm(w, r, &form)
+	if err != nil {
+		app.badRequest(w, r, err)
+		return
+	}
+
+	if form.Company != "" {
+		http.Redirect(w, r, "/?beta=sent#beta", http.StatusSeeOther)
+		return
+	}
+
+	form.Email = strings.TrimSpace(form.Email)
+	form.Platform = strings.ToLower(strings.TrimSpace(form.Platform))
+
+	form.Validator.CheckField(validator.IsEmail(form.Email), "Email", "Enter a valid email address")
+	form.Validator.CheckField(validator.In(form.Platform, "android", "ios"), "Platform", "Choose Android or iOS")
+
+	if form.Validator.HasErrors() {
+		app.renderBetaForm(w, r, http.StatusUnprocessableEntity, form)
+		return
+	}
+
+	if app.config.beta.email == "" {
+		form.Validator.AddError("Beta signup is temporarily unavailable. Please try again later.")
+		app.renderBetaForm(w, r, http.StatusServiceUnavailable, form)
+		return
+	}
+
+	if !app.allowFormSubmission("beta:"+realip.FromRequest(r), time.Now()) {
+		form.Validator.AddError("Too many signup attempts have been sent from this connection. Please try again later.")
+		app.renderBetaForm(w, r, http.StatusTooManyRequests, form)
+		return
+	}
+
+	emailData := app.newEmailData()
+	emailData["Email"] = form.Email
+	emailData["Platform"] = form.Platform
+
+	app.backgroundTask(r, func() error {
+		return app.mailer.Send(app.config.beta.email, emailData, "beta-signup.tmpl")
+	})
+
+	http.Redirect(w, r, "/?beta=sent#beta", http.StatusSeeOther)
+}
+
+func (app *application) renderBetaForm(w http.ResponseWriter, r *http.Request, status int, form betaForm) {
+	data := app.newTemplateData(r)
+	data["BetaForm"] = form
+	data["BetaSent"] = false
+
+	err := response.Page(w, status, data, "pages/home.tmpl")
 	if err != nil {
 		app.serverError(w, r, err)
 	}
@@ -110,7 +182,7 @@ func (app *application) submitSupport(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if !app.allowSupportRequest(realip.FromRequest(r), time.Now()) {
+	if !app.allowFormSubmission("support:"+realip.FromRequest(r), time.Now()) {
 		form.Validator.AddError("Too many messages have been sent from this connection. Please try again later.")
 		app.renderSupportForm(w, r, http.StatusTooManyRequests, form)
 		return
@@ -139,36 +211,36 @@ func (app *application) renderSupportForm(w http.ResponseWriter, r *http.Request
 	}
 }
 
-func (app *application) allowSupportRequest(ip string, now time.Time) bool {
-	app.supportMu.Lock()
-	defer app.supportMu.Unlock()
+func (app *application) allowFormSubmission(key string, now time.Time) bool {
+	app.formMu.Lock()
+	defer app.formMu.Unlock()
 
-	if app.supportRequests == nil {
-		app.supportRequests = make(map[string][]time.Time)
+	if app.formRequests == nil {
+		app.formRequests = make(map[string][]time.Time)
 	}
 
-	cutoff := now.Add(-supportRequestWindow)
-	if app.supportLastCleanup.IsZero() || now.Sub(app.supportLastCleanup) >= supportRequestWindow {
-		for key, requests := range app.supportRequests {
+	cutoff := now.Add(-formSubmissionWindow)
+	if app.formLastCleanup.IsZero() || now.Sub(app.formLastCleanup) >= formSubmissionWindow {
+		for key, requests := range app.formRequests {
 			if len(requests) == 0 || requests[len(requests)-1].Before(cutoff) {
-				delete(app.supportRequests, key)
+				delete(app.formRequests, key)
 			}
 		}
-		app.supportLastCleanup = now
+		app.formLastCleanup = now
 	}
 
-	requests := app.supportRequests[ip]
+	requests := app.formRequests[key]
 	firstCurrent := 0
 	for firstCurrent < len(requests) && requests[firstCurrent].Before(cutoff) {
 		firstCurrent++
 	}
 	requests = requests[firstCurrent:]
 
-	if len(requests) >= supportRequestLimit {
-		app.supportRequests[ip] = requests
+	if len(requests) >= formSubmissionLimit {
+		app.formRequests[key] = requests
 		return false
 	}
 
-	app.supportRequests[ip] = append(requests, now)
+	app.formRequests[key] = append(requests, now)
 	return true
 }

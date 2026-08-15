@@ -3,6 +3,7 @@
     <a href="/"{{if eq .CurrentPath "/"}} aria-current="page"{{end}}>Home</a>
     <a href="/faq"{{if eq .CurrentPath "/faq"}} aria-current="page"{{end}}>FAQ</a>
     <a href="/privacy"{{if eq .CurrentPath "/privacy"}} aria-current="page"{{end}}>Privacy</a>
-    <a class="nav-support" href="/support"{{if eq .CurrentPath "/support"}} aria-current="page"{{end}}>Support</a>
+    <a href="/support"{{if eq .CurrentPath "/support"}} aria-current="page"{{end}}>Support</a>
+    <a class="nav-support" href="/#beta">Join beta</a>
 </nav>
 {{end}}

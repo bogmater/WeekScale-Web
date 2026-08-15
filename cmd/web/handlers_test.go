@@ -58,6 +58,70 @@ func TestContentPages(t *testing.T) {
 	}
 }
 
+func TestSubmitBeta(t *testing.T) {
+	validForm := func() url.Values {
+		return url.Values{
+			"Email":    {"tester@example.com"},
+			"Platform": {"ios"},
+		}
+	}
+
+	t.Run("sends a valid beta signup", func(t *testing.T) {
+		app := newTestApplication(t)
+		req := newTestRequest(t, http.MethodPost, "/beta")
+		req.PostForm = validForm()
+
+		res := send(t, req, app.routes())
+		app.wg.Wait()
+
+		assert.Equal(t, res.StatusCode, http.StatusSeeOther)
+		assert.Equal(t, res.Header.Get("Location"), "/?beta=sent#beta")
+		assert.Equal(t, len(app.mailer.SentMessages), 1)
+		assert.True(t, strings.Contains(app.mailer.SentMessages[0], "tester@example.com"))
+		assert.True(t, strings.Contains(app.mailer.SentMessages[0], "iOS"))
+	})
+
+	t.Run("renders beta validation errors", func(t *testing.T) {
+		app := newTestApplication(t)
+		req := newTestRequest(t, http.MethodPost, "/beta")
+		req.PostForm = url.Values{
+			"Email":    {"not-an-email"},
+			"Platform": {"windows"},
+		}
+
+		res := send(t, req, app.routes())
+
+		assert.Equal(t, res.StatusCode, http.StatusUnprocessableEntity)
+		assert.True(t, containsHTMLNode(t, res.Body, `input[name="Email"][aria-invalid="true"]`))
+		assert.True(t, strings.Contains(res.Body, "Choose Android or iOS"))
+		assert.Equal(t, len(app.mailer.SentMessages), 0)
+	})
+
+	t.Run("silently accepts beta honeypot submissions", func(t *testing.T) {
+		app := newTestApplication(t)
+		req := newTestRequest(t, http.MethodPost, "/beta")
+		req.PostForm = validForm()
+		req.PostForm.Set("Company", "Spam Company")
+
+		res := send(t, req, app.routes())
+
+		assert.Equal(t, res.StatusCode, http.StatusSeeOther)
+		assert.Equal(t, len(app.mailer.SentMessages), 0)
+	})
+
+	t.Run("reports unavailable beta configuration", func(t *testing.T) {
+		app := newTestApplication(t)
+		app.config.beta.email = ""
+		req := newTestRequest(t, http.MethodPost, "/beta")
+		req.PostForm = validForm()
+
+		res := send(t, req, app.routes())
+
+		assert.Equal(t, res.StatusCode, http.StatusServiceUnavailable)
+		assert.True(t, strings.Contains(res.Body, "temporarily unavailable"))
+	})
+}
+
 func TestSubmitSupport(t *testing.T) {
 	validForm := func() url.Values {
 		return url.Values{
@@ -134,13 +198,14 @@ func TestSubmitSupport(t *testing.T) {
 	})
 }
 
-func TestSupportRateLimit(t *testing.T) {
+func TestFormSubmissionRateLimit(t *testing.T) {
 	app := newTestApplication(t)
 	now := time.Date(2026, time.August, 15, 12, 0, 0, 0, time.UTC)
 
-	for range supportRequestLimit {
-		assert.True(t, app.allowSupportRequest("192.0.2.1", now))
+	for range formSubmissionLimit {
+		assert.True(t, app.allowFormSubmission("support:192.0.2.1", now))
 	}
-	assert.True(t, !app.allowSupportRequest("192.0.2.1", now))
-	assert.True(t, app.allowSupportRequest("192.0.2.1", now.Add(supportRequestWindow+time.Second)))
+	assert.True(t, !app.allowFormSubmission("support:192.0.2.1", now))
+	assert.True(t, app.allowFormSubmission("beta:192.0.2.1", now))
+	assert.True(t, app.allowFormSubmission("support:192.0.2.1", now.Add(formSubmissionWindow+time.Second)))
 }

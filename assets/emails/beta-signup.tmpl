@@ -1,0 +1,24 @@
+{{define "subject"}}New WeekScale beta signup{{end}}
+
+{{define "plainBody"}}
+New WeekScale beta signup
+
+Email: {{.Email}}
+Platform: {{if eq .Platform "ios"}}iOS{{else}}Android{{end}}
+{{end}}
+
+{{define "htmlBody"}}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>New WeekScale beta signup</title>
+</head>
+<body>
+    <h1>New WeekScale beta signup</h1>
+    <p><strong>Email:</strong> {{.Email}}</p>
+    <p><strong>Platform:</strong> {{if eq .Platform "ios"}}iOS{{else}}Android{{end}}</p>
+</body>
+</html>
+{{end}}

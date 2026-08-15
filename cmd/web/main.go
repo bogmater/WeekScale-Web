@@ -36,6 +36,9 @@ type config struct {
 	support struct {
 		email string
 	}
+	beta struct {
+		email string
+	}
 	smtp struct {
 		host     string
 		port     int
@@ -46,13 +49,13 @@ type config struct {
 }
 
 type application struct {
-	config             config
-	logger             *slog.Logger
-	mailer             *smtp.Mailer
-	wg                 sync.WaitGroup
-	supportMu          sync.Mutex
-	supportRequests    map[string][]time.Time
-	supportLastCleanup time.Time
+	config          config
+	logger          *slog.Logger
+	mailer          *smtp.Mailer
+	wg              sync.WaitGroup
+	formMu          sync.Mutex
+	formRequests    map[string][]time.Time
+	formLastCleanup time.Time
 }
 
 func run(logger *slog.Logger) error {
@@ -62,6 +65,7 @@ func run(logger *slog.Logger) error {
 	cfg.httpPort = env.GetInt("HTTP_PORT", 3333)
 	cfg.notifications.email = env.GetString("NOTIFICATIONS_EMAIL", "")
 	cfg.support.email = env.GetString("SUPPORT_EMAIL", "")
+	cfg.beta.email = env.GetString("BETA_EMAIL", "")
 	cfg.smtp.host = env.GetString("SMTP_HOST", "example.smtp.host")
 	cfg.smtp.port = env.GetInt("SMTP_PORT", 25)
 	cfg.smtp.username = env.GetString("SMTP_USERNAME", "example_username")

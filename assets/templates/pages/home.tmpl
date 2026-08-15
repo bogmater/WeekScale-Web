@@ -8,6 +8,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:title" content="WeekScale: Private Weight Tracker for iOS and Android">
 <meta name="twitter:description" content="Track daily weight. Understand the weekly trend. Keep your data on your device.">
+{{if .BetaSent}}<meta name="robots" content="noindex,follow">{{end}}
 {{end}}
 
 {{define "page:main"}}
@@ -32,7 +33,7 @@
         <h1>See the week.<br><em>Not the noise.</em></h1>
         <p class="hero-lede" itemprop="description">WeekScale turns daily weigh-ins into a clearer weekly picture, so one unusual morning does not get to tell the whole story.</p>
         <div class="hero-actions">
-            <span class="button button-primary">Coming soon to iOS and Android</span>
+            <a class="button button-primary" href="#beta">Sign up for the beta</a>
             <a class="text-link" href="#how-it-works">See how it works <span aria-hidden="true">↓</span></a>
         </div>
         <ul class="trust-list" aria-label="WeekScale product promises">
@@ -162,10 +163,70 @@
     </div>
 </section>
 
+<section class="beta-section shell" id="beta">
+    <div class="beta-copy">
+        <p class="eyebrow"><span></span> Help shape WeekScale</p>
+        <h2>Join the beta.</h2>
+        <p>Choose your platform and leave an email address. You will only hear from us about beta access and testing.</p>
+        <ul>
+            <li>Early access on iOS or Android</li>
+            <li>No newsletter or marketing list</li>
+            <li>Unsubscribe at any time</li>
+        </ul>
+    </div>
+
+    <div class="beta-panel">
+        {{if .BetaSent}}
+        <div class="beta-success" role="status">
+            <strong>You are on the beta list.</strong>
+            <span>Thanks for volunteering. We will be in touch when testing opens.</span>
+        </div>
+        {{else}}
+        <h3>Request beta access</h3>
+        <p>Select the version you would like to test.</p>
+
+        {{with .BetaForm.Validator.Errors}}
+        <div class="form-errors" role="alert">{{index . 0}}</div>
+        {{end}}
+
+        <form action="/beta" method="post" novalidate>
+            <fieldset class="platform-fieldset"{{with .BetaForm.Validator.FieldErrors.Platform}} aria-describedby="platform-error"{{end}}>
+                <legend>Platform</legend>
+                <div class="platform-options">
+                    <label>
+                        <input name="Platform" type="radio" value="android"{{if eq .BetaForm.Platform "android"}} checked{{end}}>
+                        <span>Android</span>
+                    </label>
+                    <label>
+                        <input name="Platform" type="radio" value="ios"{{if eq .BetaForm.Platform "ios"}} checked{{end}}>
+                        <span>iOS</span>
+                    </label>
+                </div>
+                {{with .BetaForm.Validator.FieldErrors.Platform}}<span class="field-error" id="platform-error">{{.}}</span>{{end}}
+            </fieldset>
+
+            <div class="form-field">
+                <label for="beta-email">Email address</label>
+                <input id="beta-email" name="Email" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com" value="{{.BetaForm.Email}}" required{{with .BetaForm.Validator.FieldErrors.Email}} aria-invalid="true" aria-describedby="beta-email-error"{{end}}>
+                {{with .BetaForm.Validator.FieldErrors.Email}}<span class="field-error" id="beta-email-error">{{.}}</span>{{end}}
+            </div>
+
+            <div class="honeypot" aria-hidden="true">
+                <label for="beta-company">Leave this field empty</label>
+                <input id="beta-company" name="Company" type="text" tabindex="-1" autocomplete="off">
+            </div>
+
+            <button class="button button-primary button-submit" type="submit">Join the beta</button>
+            <p class="beta-consent">By joining, you agree that we can email you about WeekScale beta testing. See our <a href="/privacy">privacy notice</a>.</p>
+        </form>
+        {{end}}
+    </div>
+</section>
+
 <section class="closing-cta shell">
     <img loading="lazy" src="/static/img/weekscale-mark.svg?version={{.Version}}" width="72" height="72" alt="">
     <p class="eyebrow centered"><span></span> A calmer way to track</p>
     <h2>Make every day a data point.<br>Make every week the story.</h2>
-    <span class="button button-primary">Coming soon to iOS and Android</span>
+    <a class="button button-primary" href="#beta">Sign up for the beta</a>
 </section>
 {{end}}

@@ -23,6 +23,7 @@ func newTestApplication(t *testing.T) *application {
 
 	app.mailer = smtp.NewMockMailer("test@example.com")
 	app.config.baseURL = "https://www.weekscale.net"
+	app.config.beta.email = "beta@example.com"
 	app.config.support.email = "support@example.com"
 
 	return app

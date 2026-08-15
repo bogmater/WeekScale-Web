@@ -914,6 +914,169 @@ a.button-secondary:hover {
     text-transform: uppercase;
 }
 
+.beta-section {
+    scroll-margin-top: 30px;
+    display: grid;
+    grid-template-columns: minmax(320px, 0.85fr) minmax(420px, 1.15fr);
+    align-items: center;
+    gap: clamp(55px, 9vw, 120px);
+    margin-top: 130px;
+    padding: 72px;
+    background: linear-gradient(145deg, #172033, #111b2d);
+    border: 1px solid rgba(142, 209, 199, 0.22);
+    border-radius: 14px;
+    box-shadow: 0 34px 90px rgba(0, 0, 0, 0.22);
+}
+
+.beta-copy h2 {
+    margin: 0;
+    font-size: clamp(43px, 5vw, 64px);
+    line-height: 1;
+    letter-spacing: -0.055em;
+}
+
+.beta-copy > p:not(.eyebrow) {
+    max-width: 500px;
+    margin: 25px 0 0;
+    color: var(--muted);
+    font-size: 17px;
+}
+
+.beta-copy ul {
+    display: grid;
+    gap: 10px;
+    margin: 32px 0 0;
+    padding: 0;
+    color: #c9d2dc;
+    font-size: 13px;
+    list-style: none;
+}
+
+.beta-copy li::before {
+    margin-right: 10px;
+    color: var(--mint);
+    content: "\2713";
+}
+
+.beta-panel {
+    padding: 38px;
+    background: rgba(9, 14, 24, 0.72);
+    border: 1px solid rgba(142, 209, 199, 0.14);
+    border-radius: 10px;
+}
+
+.beta-panel h3 {
+    margin: 0;
+    font-size: 27px;
+    letter-spacing: -0.035em;
+}
+
+.beta-panel > p {
+    margin: 5px 0 27px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.platform-fieldset {
+    margin: 0 0 21px;
+    padding: 0;
+    border: 0;
+}
+
+.platform-fieldset legend {
+    margin-bottom: 8px;
+    color: #d9e0e6;
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.platform-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.platform-options label {
+    position: relative;
+    cursor: pointer;
+}
+
+.platform-options input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.platform-options span {
+    min-height: 48px;
+    display: grid;
+    place-items: center;
+    color: var(--muted);
+    background: var(--navy-900);
+    border: 1px solid #39455d;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 800;
+    transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+.platform-options input:checked + span {
+    color: var(--navy-950);
+    background: var(--mint);
+    border-color: var(--mint);
+}
+
+.platform-options input:focus-visible + span {
+    outline: 3px solid rgba(142, 209, 199, 0.28);
+    outline-offset: 2px;
+}
+
+.beta-panel .button-submit {
+    width: 100%;
+}
+
+.beta-consent {
+    margin: 14px 0 0;
+    color: #78869a;
+    font-size: 10px;
+    text-align: center;
+}
+
+.beta-consent a {
+    color: var(--mint);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.beta-success {
+    min-height: 250px;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    padding: 35px;
+    color: #d9fff8;
+    background: rgba(73, 214, 197, 0.08);
+    border: 1px solid rgba(73, 214, 197, 0.25);
+    border-radius: 7px;
+    text-align: center;
+}
+
+.beta-success strong,
+.beta-success span {
+    display: block;
+}
+
+.beta-success strong {
+    font-size: 24px;
+}
+
+.beta-success span {
+    max-width: 350px;
+    margin-top: 8px;
+    color: #aebfbe;
+    font-size: 13px;
+}
+
 .closing-cta {
     display: grid;
     justify-items: center;
@@ -1535,6 +1698,13 @@ a.button-secondary:hover {
         padding: 52px 34px;
     }
 
+    .beta-section {
+        grid-template-columns: 1fr;
+        gap: 42px;
+        margin-top: 90px;
+        padding: 52px 34px;
+    }
+
     .footer-grid {
         grid-template-columns: 1fr;
         align-items: start;
@@ -1650,6 +1820,14 @@ a.button-secondary:hover {
 
     .contact-panel {
         padding: 27px 23px;
+    }
+
+    .beta-section {
+        padding: 42px 22px;
+    }
+
+    .beta-panel {
+        padding: 27px 22px;
     }
 
     .form-actions {

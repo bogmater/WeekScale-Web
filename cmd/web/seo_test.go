@@ -34,6 +34,17 @@ func TestSEOMetadata(t *testing.T) {
 		assert.True(t, containsHTMLNode(t, res.Body, `meta[name="robots"][content="noindex,follow"]`))
 	})
 
+	t.Run("canonical excludes beta success query", func(t *testing.T) {
+		app := newTestApplication(t)
+		req := newTestRequest(t, http.MethodGet, "/?beta=sent")
+
+		res := send(t, req, app.routes())
+
+		assert.True(t, containsHTMLNode(t, res.Body, `link[rel="canonical"][href="https://www.weekscale.net/"]`))
+		assert.True(t, containsHTMLNode(t, res.Body, `meta[name="robots"][content="noindex,follow"]`))
+		assert.True(t, containsHTMLNode(t, res.Body, `.beta-success`))
+	})
+
 	t.Run("FAQ exposes question metadata", func(t *testing.T) {
 		app := newTestApplication(t)
 		req := newTestRequest(t, http.MethodGet, "/faq")

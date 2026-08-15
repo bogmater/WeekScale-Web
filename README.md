@@ -20,7 +20,7 @@ go run ./cmd/web
 
 Then open [http://localhost:3333](http://localhost:3333).
 
-The support page can be viewed without SMTP configuration. Sending a message requires the SMTP and support variables below.
+The support and beta forms can be viewed without SMTP configuration. Sending a message requires the SMTP and recipient variables below.
 
 ## Configuration
 
@@ -29,6 +29,7 @@ The support page can be viewed without SMTP configuration. Sending a message req
 | `BASE_URL` | `https://www.weekscale.net` | Canonical origin used by metadata, sitemap, and email data |
 | `HTTP_PORT` | `3333` | HTTP listener port |
 | `SUPPORT_EMAIL` | empty | Private recipient for support messages |
+| `BETA_EMAIL` | empty | Private recipient for beta signup messages |
 | `SMTP_HOST` | example value | SMTP server hostname |
 | `SMTP_PORT` | `25` | SMTP server port |
 | `SMTP_USERNAME` | example value | SMTP login username |
@@ -40,23 +41,24 @@ Example:
 
 ```bash
 export SUPPORT_EMAIL="support@example.com"
-export SMTP_HOST="smtp.example.com"
+export BETA_EMAIL="beta@example.com"
+export SMTP_HOST="smtp.resend.com"
 export SMTP_PORT="587"
-export SMTP_USERNAME="smtp-user"
-export SMTP_PASSWORD="smtp-password"
-export SMTP_FROM="WeekScale <no-reply@example.com>"
+export SMTP_USERNAME="resend"
+export SMTP_PASSWORD="re_your_resend_api_key"
+export SMTP_FROM="WeekScale <hello@weekscale.net>"
 go run ./cmd/web
 ```
 
 Never commit production SMTP credentials.
 
-## Support form safeguards
+## Form safeguards
 
 - The recipient address remains server-side and is never rendered into public HTML.
 - Input is length-limited, validated, and escaped by the email templates.
 - Cross-site browser submissions are rejected.
 - A hidden honeypot absorbs simple form-filling bots.
-- Valid submissions are limited to three per IP address per hour.
+- Support and beta submissions are independently limited to three per IP address per hour.
 - Email delivery runs through the application's managed background-task mechanism.
 
 The rate limit is held in process memory and applies independently to each running application instance. Add an edge-level rate limit or privacy-preserving challenge if public abuse requires stronger protection.
@@ -104,11 +106,12 @@ Set these runtime environment variables:
 BASE_URL=https://www.weekscale.net
 HTTP_PORT=3333
 SUPPORT_EMAIL=your-private-support-address
-SMTP_HOST=your-smtp-host
+BETA_EMAIL=your-private-beta-address
+SMTP_HOST=smtp.resend.com
 SMTP_PORT=587
-SMTP_USERNAME=your-smtp-user
-SMTP_PASSWORD=your-smtp-password
-SMTP_FROM=WeekScale <no-reply@weekscale.net>
+SMTP_USERNAME=resend
+SMTP_PASSWORD=re_your_resend_api_key
+SMTP_FROM=WeekScale <hello@weekscale.net>
 ```
 
 Keep SMTP variables runtime-only in Coolify. `NOTIFICATIONS_EMAIL` is optional and receives server-error reports when configured. No persistent volume or database is required.
