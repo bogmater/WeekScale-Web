@@ -1484,9 +1484,12 @@ a.button-secondary:hover {
         gap: 35px;
     }
 
-    .orbit-two,
-    .trend-chip-top {
+    .orbit-two {
         display: none;
+    }
+
+    .trend-chip-top {
+        right: 0;
     }
 
     .orbit-one {
@@ -1603,6 +1606,11 @@ a.button-secondary:hover {
 
     .trend-chip-bottom {
         left: max(0px, calc(50% - 185px));
+    }
+
+    .trend-chip-top {
+        top: 105px;
+        right: max(0px, calc(50% - 185px));
     }
 
     .signal-grid {
@@ -1788,6 +1796,20 @@ a.button-secondary:hover {
     .trend-chip-bottom {
         bottom: 63px;
         left: 0;
+    }
+
+    .trend-chip {
+        min-width: 132px;
+        padding: 11px 13px;
+    }
+
+    .trend-chip strong {
+        font-size: 16px;
+    }
+
+    .trend-chip-top {
+        top: 85px;
+        right: 0;
     }
 
     .feature-card {
