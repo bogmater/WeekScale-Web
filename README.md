@@ -80,3 +80,37 @@ make build
 ```
 
 The complete quality gate is available as `make audit`. The app uses Go's standard templates and an embedded filesystem declared in `assets/efs.go`.
+
+## Deploy with Coolify
+
+Create an **Application** resource from the Git repository and select the **Dockerfile** build pack.
+
+Use these settings:
+
+| Coolify setting | Value |
+|---|---|
+| Base directory | `/` when this project is the repository root, otherwise `/WeekScale-Web` |
+| Dockerfile location | `/Dockerfile` |
+| Port exposes | `3333` |
+| Domain | `https://www.weekscale.net` |
+| Health check path | `/healthz` |
+| Health check port | `3333` |
+
+In **General > Advanced**, enable **Include Source Commit in Build**. Coolify then supplies `SOURCE_COMMIT` to the Docker build, and the application uses it to invalidate immutable static-asset URLs after each deployment.
+
+Set these runtime environment variables:
+
+```text
+BASE_URL=https://www.weekscale.net
+HTTP_PORT=3333
+SUPPORT_EMAIL=your-private-support-address
+SMTP_HOST=your-smtp-host
+SMTP_PORT=587
+SMTP_USERNAME=your-smtp-user
+SMTP_PASSWORD=your-smtp-password
+SMTP_FROM=WeekScale <no-reply@weekscale.net>
+```
+
+Keep SMTP variables runtime-only in Coolify. `NOTIFICATIONS_EMAIL` is optional and receives server-error reports when configured. No persistent volume or database is required.
+
+Point the `www` DNS record to the Coolify server before adding the HTTPS domain so Coolify can issue its Let's Encrypt certificate. If the bare `weekscale.net` domain will also be used, redirect it to `https://www.weekscale.net` rather than serving duplicate content.

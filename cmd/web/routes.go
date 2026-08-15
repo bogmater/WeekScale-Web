@@ -23,6 +23,7 @@ func (app *application) routes() http.Handler {
 
 	mux.Get("/", app.home)
 	mux.Get("/faq", app.faq)
+	mux.Get("/healthz", app.healthcheck)
 	mux.Get("/privacy", app.privacy)
 	mux.Get("/robots.txt", app.robots)
 	mux.Get("/sitemap.xml", app.sitemap)

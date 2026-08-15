@@ -9,13 +9,17 @@ import (
 
 func (app *application) newTemplateData(r *http.Request) map[string]any {
 	siteURL := app.siteURL()
+	assetVersion := version.GetRevision()
+	if assetVersion == "unavailable" {
+		assetVersion = version.Get()
+	}
 
 	data := map[string]any{
 		"CanonicalURL":   siteURL + r.URL.Path,
 		"CurrentPath":    r.URL.Path,
 		"SiteURL":        siteURL,
 		"SocialImageURL": siteURL + "/static/img/weekscale-social.png",
-		"Version":        version.Get(),
+		"Version":        assetVersion,
 	}
 
 	return data

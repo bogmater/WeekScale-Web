@@ -1,0 +1,10 @@
+.DS_Store
+.env
+.env.*
+.git
+.gitignore
+README.md
+build-errors.log
+tmp/
+**/*_test.go
+assets/static/img/Screenshot_*.png

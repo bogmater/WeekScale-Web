@@ -22,6 +22,18 @@ func TestHome(t *testing.T) {
 	})
 }
 
+func TestHealthcheck(t *testing.T) {
+	app := newTestApplication(t)
+	req := newTestRequest(t, http.MethodGet, "/healthz")
+
+	res := send(t, req, app.routes())
+
+	assert.Equal(t, res.StatusCode, http.StatusOK)
+	assert.Equal(t, res.Header.Get("Content-Type"), "text/plain; charset=utf-8")
+	assert.Equal(t, res.Header.Get("Cache-Control"), "no-store")
+	assert.Equal(t, res.Body, "ok")
+}
+
 func TestContentPages(t *testing.T) {
 	tests := []struct {
 		name    string

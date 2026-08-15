@@ -34,6 +34,13 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func (app *application) healthcheck(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+	w.Header().Set("Cache-Control", "no-store")
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte("ok\n"))
+}
+
 func (app *application) faq(w http.ResponseWriter, r *http.Request) {
 	data := app.newTemplateData(r)
 

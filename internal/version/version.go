@@ -5,7 +5,13 @@ import (
 	"runtime/debug"
 )
 
+var buildRevision string
+
 func Get() string {
+	if buildRevision != "" && buildRevision != "unavailable" {
+		return buildRevision
+	}
+
 	bi, ok := debug.ReadBuildInfo()
 	if ok {
 		return bi.Main.Version
@@ -15,6 +21,10 @@ func Get() string {
 }
 
 func GetRevision() string {
+	if buildRevision != "" && buildRevision != "unavailable" {
+		return buildRevision
+	}
+
 	var revision string
 	var modified bool
 
