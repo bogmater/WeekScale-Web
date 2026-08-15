@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title" shape-rendering="geometricPrecision">
+  <title id="title">WeekScale</title>
+  <path fill="#172033" d="M224 0h576a224 224 0 0 1 224 224v576a224 224 0 0 1-224 224H224A224 224 0 0 1 0 800V224A224 224 0 0 1 224 0Z"/>
+  <path fill="#F5FAF9" d="M95 299h120l143 359 81-126-13 126-61 149q-7 16-22 16h-14q-16 0-22-16L95 299Z"/>
+  <path fill="#F5FAF9" d="M929 299H809L666 658l-81-126 13 126 61 149q7 16 22 16h14q16 0 22-16L929 299Z"/>
+  <path fill="#8ED1C7" d="m512 205 54 528H458l54-528Z"/>
+  <path fill="#8ED1C7" d="M512 641a92 92 0 1 0 0 184 92 92 0 1 0 0-184"/>
+  <path fill="#172033" d="M512 679a54 54 0 1 0 0 108 54 54 0 1 0 0-108"/>
+</svg>

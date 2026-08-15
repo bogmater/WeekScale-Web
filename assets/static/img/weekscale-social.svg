@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#101725"/>
+  <g stroke="#8ED1C7" stroke-opacity=".07">
+    <path d="M0 90h1200M0 180h1200M0 270h1200M0 360h1200M0 450h1200M0 540h1200"/>
+    <path d="M90 0v630M180 0v630M270 0v630M360 0v630M450 0v630M540 0v630M630 0v630M720 0v630M810 0v630M900 0v630M990 0v630M1080 0v630"/>
+  </g>
+  <circle cx="960" cy="295" r="220" fill="#8ED1C7" fill-opacity=".08"/>
+  <text x="74" y="105" fill="#8ED1C7" font-family="Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="4">WEEKSCALE</text>
+  <text x="70" y="245" fill="#F5FAF9" font-family="Arial, sans-serif" font-size="68" font-weight="700" letter-spacing="-3">See the week.</text>
+  <text x="70" y="325" fill="#8ED1C7" font-family="Georgia, serif" font-size="70" font-style="italic">Not the noise.</text>
+  <text x="74" y="395" fill="#AEB9C7" font-family="Arial, sans-serif" font-size="25">Private weight tracking in weekly perspective.</text>
+  <g transform="translate(837 172) scale(.24)">
+    <path fill="#172033" d="M224 0h576a224 224 0 0 1 224 224v576a224 224 0 0 1-224 224H224A224 224 0 0 1 0 800V224A224 224 0 0 1 224 0Z"/>
+    <path fill="#F5FAF9" d="M95 299h120l143 359 81-126-13 126-61 149q-7 16-22 16h-14q-16 0-22-16L95 299Z"/>
+    <path fill="#F5FAF9" d="M929 299H809L666 658l-81-126 13 126 61 149q7 16 22 16h14q16 0 22-16L929 299Z"/>
+    <path fill="#8ED1C7" d="m512 205 54 528H458l54-528Z"/>
+    <path fill="#8ED1C7" d="M512 641a92 92 0 1 0 0 184 92 92 0 1 0 0-184"/>
+    <path fill="#172033" d="M512 679a54 54 0 1 0 0 108 54 54 0 1 0 0-108"/>
+  </g>
+  <g transform="translate(74 517)" font-family="Arial, sans-serif" font-size="18" font-weight="700">
+    <rect width="190" height="45" rx="22.5" fill="#8ED1C7"/>
+    <text x="95" y="29" fill="#101725" text-anchor="middle">NO SUBSCRIPTION</text>
+    <rect x="204" width="94" height="45" rx="22.5" fill="none" stroke="#8ED1C7" stroke-opacity=".5"/>
+    <text x="251" y="29" fill="#F5FAF9" text-anchor="middle">NO AI</text>
+  </g>
+</svg>

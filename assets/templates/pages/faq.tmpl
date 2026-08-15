@@ -1,0 +1,91 @@
+{{define "page:title"}}FAQ | WeekScale{{end}}
+
+{{define "page:meta"}}
+<meta name="page" content="faq">
+<meta name="description" content="Answers about WeekScale features, privacy, weight tracking, data import, export, and reminders.">
+<meta property="og:title" content="WeekScale FAQ">
+<meta property="og:description" content="Answers about WeekScale features, privacy, pricing, platforms, data import, export, and reminders.">
+<meta property="og:type" content="website">
+<meta name="twitter:title" content="WeekScale FAQ">
+<meta name="twitter:description" content="Answers about WeekScale features, privacy, pricing, platforms, and data portability.">
+{{end}}
+
+{{define "page:main"}}
+<header class="page-hero shell">
+    <p class="eyebrow"><span></span> Questions, answered</p>
+    <h1>The useful details.</h1>
+    <p>How WeekScale handles your daily entries, weekly trends, privacy, and data portability.</p>
+</header>
+
+<div class="faq-list shell" itemscope itemtype="https://schema.org/FAQPage">
+    <section class="faq-group">
+        <h2>Tracking and trends</h2>
+        <article class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <h3 itemprop="name">Why does WeekScale focus on weekly averages?</h3>
+            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">Body weight can shift from one morning to the next for reasons unrelated to long-term change. Weekly averages put those readings into context and make the broader direction easier to see.</span></p>
+        </article>
+        <article class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <h3 itemprop="name">What is the Reliability Score?</h3>
+            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">It shows how complete a week is. One recorded day is 14%, five days is 71%, and all seven days is 100%. More entries generally make a weekly average more representative.</span></p>
+        </article>
+        <article class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <h3 itemprop="name">Can I use kilograms or pounds?</h3>
+            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">Yes. You can choose kg or lb, and WeekScale selects a sensible first-run default based on your device region.</span></p>
+        </article>
+        <article class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <h3 itemprop="name">Can I add or edit an earlier date?</h3>
+            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">Yes. Choose any date up to today. There is one entry per calendar day, so saving another value for the same date updates that entry.</span></p>
+        </article>
+    </section>
+
+    <section class="faq-group">
+        <h2>Data and privacy</h2>
+        <article class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <h3 itemprop="name">Do I need a WeekScale account?</h3>
+            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">No. WeekScale has no account system and no proprietary cloud synchronization. Your database and settings are stored in the app's private storage on your device.</span></p>
+        </article>
+        <article class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <h3 itemprop="name">Does the app send my weight anywhere?</h3>
+            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">No. The Android app does not request internet access and contains no analytics, advertising, telemetry, Firebase, Sentry, or remote crash-reporting SDK.</span></p>
+        </article>
+        <article class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <h3 itemprop="name">Can Android back up the app?</h3>
+            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">Potentially. Android system backup and device transfer are enabled. Depending on your device and Android settings, app data may be included in an Android-managed backup associated with your device account. This is not a WeekScale-operated service.</span></p>
+        </article>
+        <article class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <h3 itemprop="name">Can I import or export my history?</h3>
+            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">Yes. WeekScale imports common CSV, TSV, and text formats with flexible column mapping and date recognition. Export is always initiated by you and uses Android's standard share sheet.</span></p>
+        </article>
+    </section>
+
+    <section class="faq-group">
+        <h2>Availability and reminders</h2>
+        <article class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <h3 itemprop="name">Is WeekScale a subscription?</h3>
+            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">No. WeekScale will be a one-time purchase, planned at $5 USD in the United States and €5 EUR in Europe. Pay once, use it forever, and receive updates without a recurring fee.</span></p>
+        </article>
+        <article class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <h3 itemprop="name">Does WeekScale use AI?</h3>
+            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">No. WeekScale uses straightforward calculations for averages, ranges, trends, and reliability. It does not use AI models or send your weight history to an AI service.</span></p>
+        </article>
+        <article class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <h3 itemprop="name">Where can I download WeekScale?</h3>
+            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">WeekScale is currently pre-release and coming soon to both iOS and Android.</span></p>
+        </article>
+        <article class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <h3 itemprop="name">Are reminders required?</h3>
+            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">No. Daily weigh-in and monthly backup reminders are optional and disabled by default. Android notification permission is requested only after you enable a reminder.</span></p>
+        </article>
+        <article class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <h3 itemprop="name">Which Android versions are supported?</h3>
+            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">The planned release supports Android 7.0 and later.</span></p>
+        </article>
+        <article class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <h3 itemprop="name">Will there be an iPhone version?</h3>
+            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">Yes. WeekScale is coming to both iOS and Android. Platform requirements will be published as development progresses.</span></p>
+        </article>
+    </section>
+
+    <p class="note">Still looking for something? <a class="inline-link" href="/support">Send a support message.</a></p>
+</div>
+{{end}}

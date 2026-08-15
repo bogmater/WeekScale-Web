@@ -1,0 +1,17 @@
+{{define "page:title"}}Page not found | WeekScale{{end}}
+
+{{define "page:meta"}}
+<meta name="page" content="errors/404">
+<meta name="robots" content="noindex,follow">
+{{end}}
+
+{{define "page:main"}}
+<section class="error-page shell">
+    <div>
+        <p class="error-code">404</p>
+        <h1>Nothing at this weighpoint.</h1>
+        <p>The page you are looking for does not exist or may have moved.</p>
+        <a class="button button-secondary" href="/">Return home</a>
+    </div>
+</section>
+{{end}}

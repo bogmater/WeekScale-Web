@@ -1,0 +1,17 @@
+{{define "page:title"}}Bad request | WeekScale{{end}}
+
+{{define "page:meta"}}
+<meta name="page" content="errors/400">
+<meta name="robots" content="noindex,follow">
+{{end}}
+
+{{define "page:main"}}
+<section class="error-page shell">
+    <div>
+        <p class="error-code">400</p>
+        <h1>That request did not work.</h1>
+        <p>{{.ErrorMessage}}</p>
+        <a class="button button-secondary" href="/">Return home</a>
+    </div>
+</section>
+{{end}}

@@ -1,0 +1,171 @@
+{{define "page:title"}}WeekScale: Private Weight Tracker for iOS and Android{{end}}
+
+{{define "page:meta"}}
+<meta name="page" content="home">
+<meta name="description" content="WeekScale is a private, local-first mobile weight tracker built around weekly trends instead of daily noise.">
+<meta property="og:title" content="WeekScale: Private Weight Tracker for iOS and Android">
+<meta property="og:description" content="Track daily weight. Understand the weekly trend. Keep your data on your device.">
+<meta property="og:type" content="website">
+<meta name="twitter:title" content="WeekScale: Private Weight Tracker for iOS and Android">
+<meta name="twitter:description" content="Track daily weight. Understand the weekly trend. Keep your data on your device.">
+{{end}}
+
+{{define "page:main"}}
+<section class="hero shell" itemscope itemtype="https://schema.org/SoftwareApplication">
+    <meta itemprop="name" content="WeekScale">
+    <meta itemprop="applicationCategory" content="HealthApplication">
+    <meta itemprop="operatingSystem" content="iOS, Android">
+    <span hidden itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+        <meta itemprop="price" content="5.00">
+        <meta itemprop="priceCurrency" content="USD">
+        <meta itemprop="eligibleRegion" content="US">
+        <link itemprop="availability" href="https://schema.org/PreOrder">
+    </span>
+    <span hidden itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+        <meta itemprop="price" content="5.00">
+        <meta itemprop="priceCurrency" content="EUR">
+        <meta itemprop="eligibleRegion" content="Europe">
+        <link itemprop="availability" href="https://schema.org/PreOrder">
+    </span>
+    <div class="hero-copy">
+        <p class="eyebrow"><span></span> Private by design · Mobile</p>
+        <h1>See the week.<br><em>Not the noise.</em></h1>
+        <p class="hero-lede" itemprop="description">WeekScale turns daily weigh-ins into a clearer weekly picture, so one unusual morning does not get to tell the whole story.</p>
+        <div class="hero-actions">
+            <span class="button button-primary">Coming soon to iOS and Android</span>
+            <a class="text-link" href="#how-it-works">See how it works <span aria-hidden="true">↓</span></a>
+        </div>
+        <ul class="trust-list" aria-label="WeekScale product promises">
+            <li>No subscription</li>
+            <li>No AI</li>
+            <li>No ads</li>
+            <li>No analytics</li>
+        </ul>
+    </div>
+    <div class="hero-visual" aria-label="WeekScale weekly dashboard preview">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="phone phone-hero">
+            <img src="/static/img/weekscale-dashboard-720.webp?version={{.Version}}" srcset="/static/img/weekscale-dashboard-720.webp?version={{.Version}} 720w, /static/img/weekscale-dashboard-1080.webp?version={{.Version}} 1080w" sizes="(max-width: 500px) 240px, (max-width: 760px) 270px, 300px" width="720" height="1616" fetchpriority="high" alt="WeekScale dashboard showing weekly averages, trends, and reliability scores">
+        </div>
+        <div class="trend-chip trend-chip-top"><span>Weekly change</span><strong>↓ 0.39 kg</strong></div>
+        <div class="trend-chip trend-chip-bottom"><span>Reliability</span><strong>86%</strong></div>
+    </div>
+</section>
+
+<section class="signal-strip" aria-label="Core product principles">
+    <div class="shell signal-grid">
+        <p><strong>01</strong><span>One calm check-in<br>each day</span></p>
+        <p><strong>07</strong><span>Days shaped into<br>one useful week</span></p>
+        <p><strong>00</strong><span>Subscriptions, AI, or<br>tracking SDKs</span></p>
+    </div>
+</section>
+
+<section class="section shell" id="how-it-works">
+    <div class="section-heading split-heading">
+        <div>
+            <p class="eyebrow"><span></span> A steadier point of view</p>
+            <h2>Your weight moves daily.<br>Your direction moves weekly.</h2>
+        </div>
+        <p>Log one number. WeekScale does the useful arithmetic: averages, ranges, completeness, and comparisons with your previous recorded week.</p>
+    </div>
+    <div class="feature-grid">
+        <article class="feature-card feature-card-wide">
+            <span class="feature-number">01</span>
+            <div>
+                <h3>Weekly averages over daily drama</h3>
+                <p>See the average, minimum, maximum, and change from your last recorded week at a glance.</p>
+            </div>
+            <div class="mini-week" aria-hidden="true">
+                <div class="mini-week-value"><strong>79.75</strong><span>kg</span><small>↓ 0.39 kg</small></div>
+                <div class="mini-week-days"><i></i><i></i><i></i><i></i><i></i><i></i><i class="empty"></i></div>
+            </div>
+        </article>
+        <article class="feature-card">
+            <span class="feature-number">02</span>
+            <h3>Know how solid the signal is</h3>
+            <p>The Reliability Score shows how complete each week is, helping you read the average with the right amount of confidence.</p>
+            <div class="reliability-dial" aria-hidden="true"><strong>86%</strong><span>6 of 7 days</span></div>
+        </article>
+        <article class="feature-card">
+            <span class="feature-number">03</span>
+            <h3>Log in seconds</h3>
+            <p>Enter today’s weight or choose an earlier date. Use kilograms or pounds, with regional defaults that make sense.</p>
+            <div class="entry-demo" aria-hidden="true"><span>Today</span><strong>78.9 <small>kg</small></strong><b>Saved</b></div>
+        </article>
+    </div>
+</section>
+
+<section class="section trend-section">
+    <div class="shell trend-layout">
+        <div class="trend-copy">
+            <p class="eyebrow"><span></span> Zoom out</p>
+            <h2>A trend you can actually read.</h2>
+            <p>Switch between daily readings and weekly averages across two weeks, one month, three months, or six months.</p>
+            <ul class="check-list">
+                <li>Daily and weekly series</li>
+                <li>Pinch to zoom and drag to pan</li>
+                <li>Clear point-by-point markers</li>
+            </ul>
+        </div>
+        <div class="graph-stage">
+            <div class="phone phone-graph">
+                <img loading="lazy" src="/static/img/weekscale-trend-720.webp?version={{.Version}}" srcset="/static/img/weekscale-trend-720.webp?version={{.Version}} 720w, /static/img/weekscale-trend-1080.webp?version={{.Version}} 1080w" sizes="300px" width="720" height="1616" alt="WeekScale trend graph with daily weights and a weekly average line">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section shell feature-showcase">
+    <div class="showcase-visual">
+        <div class="phone phone-entry">
+            <img loading="lazy" src="/static/img/weekscale-entry-720.webp?version={{.Version}}" srcset="/static/img/weekscale-entry-720.webp?version={{.Version}} 720w, /static/img/weekscale-entry-1080.webp?version={{.Version}} 1080w" sizes="290px" width="720" height="1616" alt="WeekScale dialog for quickly logging a weight">
+        </div>
+    </div>
+    <div class="showcase-copy">
+        <p class="eyebrow"><span></span> Yours to keep</p>
+        <h2>Simple in. Simple out.</h2>
+        <p>Bring existing history with flexible CSV import. Export your complete record whenever you choose and share it through Android’s standard share sheet.</p>
+        <div class="detail-list">
+            <div><strong>CSV</strong><span>Import and export</span></div>
+            <div><strong>kg/lb</strong><span>Choose your unit</span></div>
+            <div><strong>Local</strong><span>Stored on device</span></div>
+        </div>
+    </div>
+</section>
+
+<section class="section shell privacy-callout">
+    <div class="privacy-mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64"><path d="M32 5 53 13v16c0 14-8.6 24.4-21 30C19.6 53.4 11 43 11 29V13L32 5Z"/><path d="m23 31 6 6 13-14"/></svg>
+    </div>
+    <div>
+        <p class="eyebrow"><span></span> Local-first, for real</p>
+        <h2>Your weight belongs to you.</h2>
+        <p>WeekScale has no account, proprietary cloud sync, advertising, analytics, or remote crash-reporting SDK. The app does not even request internet access.</p>
+    </div>
+    <a class="button button-secondary" href="/privacy">Read the privacy details</a>
+</section>
+
+<section class="purchase-callout shell">
+    <div>
+        <p class="eyebrow"><span></span> One honest price</p>
+        <h2>Pay once.<br>Use forever.</h2>
+    </div>
+    <div class="purchase-copy">
+        <p class="purchase-price"><strong>$5</strong> USD <span>/</span> <strong>€5</strong> EUR</p>
+        <p>No subscription and no recurring fee. Buy WeekScale once and keep using it, with updates included.</p>
+        <ul aria-label="WeekScale purchase promises">
+            <li>No subscription</li>
+            <li>No AI</li>
+            <li>No data lock-in</li>
+        </ul>
+    </div>
+</section>
+
+<section class="closing-cta shell">
+    <img loading="lazy" src="/static/img/weekscale-mark.svg?version={{.Version}}" width="72" height="72" alt="">
+    <p class="eyebrow centered"><span></span> A calmer way to track</p>
+    <h2>Make every day a data point.<br>Make every week the story.</h2>
+    <span class="button button-primary">Coming soon to iOS and Android</span>
+</section>
+{{end}}

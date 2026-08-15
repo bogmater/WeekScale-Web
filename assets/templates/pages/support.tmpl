@@ -1,0 +1,76 @@
+{{define "page:title"}}Support | WeekScale{{end}}
+
+{{define "page:meta"}}
+<meta name="page" content="support">
+<meta name="description" content="Get help with WeekScale or send a private support message.">
+{{if .Sent}}<meta name="robots" content="noindex,follow">{{end}}
+<meta property="og:title" content="WeekScale Support">
+<meta property="og:description" content="Get help with WeekScale or send a private support message.">
+<meta property="og:type" content="website">
+<meta name="twitter:title" content="WeekScale Support">
+<meta name="twitter:description" content="Get help with WeekScale or send a private support message.">
+{{end}}
+
+{{define "page:main"}}
+<header class="page-hero shell">
+    <p class="eyebrow"><span></span> Human support</p>
+    <h1>How can we help?</h1>
+    <p>Check the common answers or send a message. Your email address is used only to respond to your request.</p>
+</header>
+
+<div class="support-layout shell">
+    <aside class="support-aside">
+        <h2>Before you send</h2>
+        <p>The <a class="inline-link" href="/faq">FAQ</a> covers weekly averages, Reliability Scores, privacy, imports, exports, reminders, and platform availability.</p>
+        <div class="support-points">
+            <div><strong>Keep health data private</strong><span>Do not paste weights, dates, CSV rows, or other sensitive information.</span></div>
+            <div><strong>Include useful context</strong><span>Your device, OS version, and a description of what happened are usually enough.</span></div>
+            <div><strong>No public email address</strong><span>This form sends directly to a private support inbox.</span></div>
+        </div>
+    </aside>
+
+    <section class="contact-panel" aria-labelledby="contact-title">
+        <h2 id="contact-title">Send a message</h2>
+        <p>All fields are required. Please allow time for a personal reply.</p>
+
+        {{if .Sent}}
+        <div class="form-success" role="status">Your message has been accepted. Thanks for getting in touch.</div>
+        {{end}}
+
+        {{with .Form.Validator.Errors}}
+        <div class="form-errors" role="alert">{{index . 0}}</div>
+        {{end}}
+
+        <form action="/support" method="post" novalidate>
+            <div class="form-row">
+                <div class="form-field">
+                    <label for="name">Name</label>
+                    <input id="name" name="Name" type="text" autocomplete="name" maxlength="100" value="{{.Form.Name}}" required{{with .Form.Validator.FieldErrors.Name}} aria-invalid="true" aria-describedby="name-error"{{end}}>
+                    {{with .Form.Validator.FieldErrors.Name}}<span class="field-error" id="name-error">{{.}}</span>{{end}}
+                </div>
+                <div class="form-field">
+                    <label for="email">Email</label>
+                    <input id="email" name="Email" type="email" autocomplete="email" maxlength="254" value="{{.Form.Email}}" required{{with .Form.Validator.FieldErrors.Email}} aria-invalid="true" aria-describedby="email-error"{{end}}>
+                    {{with .Form.Validator.FieldErrors.Email}}<span class="field-error" id="email-error">{{.}}</span>{{end}}
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="message">What can we help with?</label>
+                <textarea id="message" name="Message" maxlength="4000" required{{with .Form.Validator.FieldErrors.Message}} aria-invalid="true" aria-describedby="message-error"{{end}}>{{.Form.Message}}</textarea>
+                {{with .Form.Validator.FieldErrors.Message}}<span class="field-error" id="message-error">{{.}}</span>{{end}}
+            </div>
+
+            <div class="honeypot" aria-hidden="true">
+                <label for="website">Leave this field empty</label>
+                <input id="website" name="Website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="form-actions">
+                <p>By sending, you agree that the submitted details can be used to respond to this request.</p>
+                <button class="button button-primary button-submit" type="submit">Send message</button>
+            </div>
+        </form>
+    </section>
+</div>
+{{end}}

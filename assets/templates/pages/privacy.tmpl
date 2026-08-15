@@ -1,0 +1,69 @@
+{{define "page:title"}}Privacy | WeekScale{{end}}
+
+{{define "page:meta"}}
+<meta name="page" content="privacy">
+<meta name="description" content="How the local-first WeekScale mobile app and website handle your information.">
+<meta property="og:title" content="WeekScale Privacy">
+<meta property="og:description" content="How the local-first WeekScale mobile app and website handle your information.">
+<meta property="og:type" content="website">
+<meta name="twitter:title" content="WeekScale Privacy">
+<meta name="twitter:description" content="How the local-first WeekScale mobile app and website handle your information.">
+{{end}}
+
+{{define "page:main"}}
+<header class="page-hero shell">
+    <p class="eyebrow"><span></span> Privacy without fine-print games</p>
+    <h1>Your data stays yours.</h1>
+    <p>This page separates the Android app from this website because they handle information differently. The app is local-first; the website only receives information you choose to send through support.</p>
+</header>
+
+<div class="content-layout shell">
+    <nav class="contents-nav" aria-label="Privacy page sections">
+        <span>On this page</span>
+        <a href="#app-data">Android app</a>
+        <a href="#backups">System backups</a>
+        <a href="#csv">CSV sharing</a>
+        <a href="#website">Website</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="prose">
+        <section class="prose-section" id="app-data">
+            <h2>The Android app</h2>
+            <p>WeekScale stores weight entries in a database inside the app's private internal storage. Display preferences, setup choices, graph settings, and reminder settings are also stored locally on your device.</p>
+            <p>The app does not request Android's internet permission. It has no WeekScale account, proprietary cloud synchronization, advertising SDK, analytics, telemetry, AI models, Firebase, Sentry, Crashlytics, or other remote crash-reporting SDK.</p>
+            <p>Weekly averages, ranges, trends, and Reliability Scores use ordinary on-device calculations. Weight history is not sent to an AI service for processing.</p>
+            <p>WeekScale does not add weight values or weigh-in dates to application logs, exception messages, analytics events, or reminder notification text.</p>
+        </section>
+
+        <section class="prose-section" id="backups">
+            <h2>Android system backup</h2>
+            <p>Android system backup and device transfer are enabled. Depending on your Android version, device manufacturer, account settings, and selected backup transport, the app's database and preferences may be included in Android-managed cloud backup or transferred to another device.</p>
+            <p>This backup is managed by Android and your device or account provider. It is not a WeekScale account or a WeekScale-operated synchronization service.</p>
+            <p>Android may also collect platform crash and performance diagnostics from people who enable Android usage and diagnostics sharing. Those platform reports are controlled by Android, not by an SDK built into WeekScale.</p>
+        </section>
+
+        <section class="prose-section" id="csv">
+            <h2>Import and CSV sharing</h2>
+            <p>Files selected for import are read on your device. CSV export only occurs after you request it. The app prepares an export in its cache and passes temporary read access to the application you choose through Android's share sheet.</p>
+            <p>Exported files contain weight history and should be treated as sensitive. The privacy practices of an application or service you choose to share with are governed by that provider.</p>
+        </section>
+
+        <section class="prose-section" id="website">
+            <h2>This website</h2>
+            <p>The public marketing pages do not use advertising cookies, behavioral analytics, tracking pixels, or third-party fonts. Standard web-server logs may record technical request information such as IP address, requested URL, browser protocol, response status, and request time for security and operational troubleshooting.</p>
+            <h3>Support form</h3>
+            <p>If you use the support form, this website processes the name, email address, and message you submit. The message is sent to the private support mailbox through the configured email provider so that a response can be provided.</p>
+            <p>Support messages and replies may remain in that mailbox while they are needed to resolve the request and maintain reasonable support records. Do not include weight history, CSV contents, passwords, or other sensitive personal information in a support message.</p>
+        </section>
+
+        <section class="prose-section" id="contact">
+            <h2>Questions and changes</h2>
+            <p>You can ask a privacy question through the <a href="/support">support form</a>. The destination email address is kept on the server rather than published on the page.</p>
+            <p>Both the iOS and Android versions will follow the same local-first principles. This notice will be updated with each platform's specific storage and backup behavior before public availability.</p>
+            <p>This notice may be updated when the app is released, the website changes, or legal and distribution requirements become clearer. Material changes will be reflected on this page.</p>
+            <p><strong>Last updated:</strong> 15 August 2026</p>
+        </section>
+    </div>
+</div>
+{{end}}

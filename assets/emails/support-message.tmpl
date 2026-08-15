@@ -1,0 +1,29 @@
+{{define "subject"}}New WeekScale support message{{end}}
+
+{{define "plainBody"}}
+New WeekScale support message
+
+Name: {{.Name}}
+Email: {{.Email}}
+
+Message:
+{{.Message}}
+{{end}}
+
+{{define "htmlBody"}}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>New WeekScale support message</title>
+</head>
+<body>
+    <h1>New WeekScale support message</h1>
+    <p><strong>Name:</strong> {{.Name}}</p>
+    <p><strong>Email:</strong> {{.Email}}</p>
+    <p><strong>Message:</strong></p>
+    <p style="white-space: pre-wrap">{{.Message}}</p>
+</body>
+</html>
+{{end}}

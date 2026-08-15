@@ -1,0 +1,17 @@
+{{define "page:title"}}Server error | WeekScale{{end}}
+
+{{define "page:meta"}}
+<meta name="page" content="errors/500">
+<meta name="robots" content="noindex,follow">
+{{end}}
+
+{{define "page:main"}}
+<section class="error-page shell">
+    <div>
+        <p class="error-code">500</p>
+        <h1>We lost our balance.</h1>
+        <p>The server hit an unexpected problem. Please try again in a little while.</p>
+        <a class="button button-secondary" href="/">Return home</a>
+    </div>
+</section>
+{{end}}
