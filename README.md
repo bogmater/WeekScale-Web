@@ -2,12 +2,16 @@
 
 The marketing and support website for WeekScale, a local-first mobile weight tracker focused on weekly trends rather than day-to-day noise. Public iOS and Android releases are coming soon.
 
+**Website:** [www.weekscale.net](https://www.weekscale.net)
+
 The site is a server-rendered Go application. HTML templates, CSS, screenshots, and email templates are embedded into the application binary. It has no client-side framework, external fonts, analytics, or advertising scripts.
 
 ## Pages
 
 - `/` - marketing landing page
 - `/faq` - product and privacy questions
+- `/weekly-average-weight` - guide to calendar-week averages and rolling averages
+- `/private-weight-tracker` - guide to local-first weight tracking and data privacy
 - `/privacy` - Android app and website privacy details
 - `/support` - spam-resistant support contact form
 
