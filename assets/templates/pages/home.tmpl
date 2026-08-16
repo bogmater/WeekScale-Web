@@ -46,14 +46,16 @@
         </ul>
     </div>
     <div class="hero-visual" aria-label="WeekScale weekly dashboard preview">
-        <div class="platform-switcher" role="group" aria-label="Choose which platform screenshots to show">
-            <button type="button" data-platform="android" class="is-active" aria-pressed="true">Android</button>
-            <button type="button" data-platform="ios" aria-pressed="false">iOS</button>
-        </div>
         <div class="orbit orbit-one"></div>
         <div class="orbit orbit-two"></div>
-        <div class="phone phone-hero">
-            <img src="/static/img/weekscale-dashboard-720.webp?version={{.Version}}" srcset="/static/img/weekscale-dashboard-720.webp?version={{.Version}} 720w, /static/img/weekscale-dashboard-1080.webp?version={{.Version}} 1080w" data-android-src="/static/img/weekscale-dashboard-720.webp?version={{.Version}}" data-android-srcset="/static/img/weekscale-dashboard-720.webp?version={{.Version}} 720w, /static/img/weekscale-dashboard-1080.webp?version={{.Version}} 1080w" data-ios-src="/static/img/weekscale-ios-dashboard-720.webp?version={{.Version}}" data-ios-srcset="/static/img/weekscale-ios-dashboard-720.webp?version={{.Version}} 720w, /static/img/weekscale-ios-dashboard-1080.webp?version={{.Version}} 1080w" sizes="(max-width: 500px) 240px, (max-width: 760px) 270px, 300px" width="720" height="1616" fetchpriority="high" alt="WeekScale dashboard showing weekly averages, trends, and reliability scores">
+        <div class="hero-device">
+            <div class="platform-switcher" role="group" aria-label="Choose which platform screenshots to show">
+                <button type="button" data-platform="android" class="is-active" aria-pressed="true">Android</button>
+                <button type="button" data-platform="ios" aria-pressed="false">iOS</button>
+            </div>
+            <div class="phone phone-hero">
+                <img src="/static/img/weekscale-dashboard-720.webp?version={{.Version}}" srcset="/static/img/weekscale-dashboard-720.webp?version={{.Version}} 720w, /static/img/weekscale-dashboard-1080.webp?version={{.Version}} 1080w" data-android-src="/static/img/weekscale-dashboard-720.webp?version={{.Version}}" data-android-srcset="/static/img/weekscale-dashboard-720.webp?version={{.Version}} 720w, /static/img/weekscale-dashboard-1080.webp?version={{.Version}} 1080w" data-ios-src="/static/img/weekscale-ios-dashboard-720.webp?version={{.Version}}" data-ios-srcset="/static/img/weekscale-ios-dashboard-720.webp?version={{.Version}} 720w, /static/img/weekscale-ios-dashboard-1080.webp?version={{.Version}} 1080w" sizes="(max-width: 500px) 240px, (max-width: 760px) 270px, 300px" width="720" height="1616" fetchpriority="high" alt="WeekScale dashboard showing weekly averages, trends, and reliability scores">
+            </div>
         </div>
         <div class="trend-chip trend-chip-top"><span>Weekly change</span><strong>↓ 0.39 kg</strong></div>
         <div class="trend-chip trend-chip-bottom"><span>Reliability</span><strong>86%</strong></div>
@@ -153,6 +155,22 @@
     <a class="button button-secondary" href="/privacy">Read the privacy details</a>
 </section>
 
+<section class="section shell">
+    <div class="section-heading split-heading">
+        <div>
+            <p class="eyebrow"><span></span> Made by one person</p>
+            <h2>I built the tracker I wanted to use.</h2>
+        </div>
+        <p>WeekScale is built by one person. No subscriptions, no ads, no forced account &mdash; just a weight tracker focused on the weekly format. <a class="text-link" href="/about">Read the story</a></p>
+    </div>
+    <ul class="check-list" aria-label="WeekScale values">
+        <li>No subscription</li>
+        <li>No ads or analytics</li>
+        <li>No account needed</li>
+        <li>No data sharing</li>
+    </ul>
+</section>
+
 <section class="purchase-callout shell">
     <div>
         <p class="eyebrow"><span></span> One honest price</p>
@@ -232,6 +250,21 @@
             <p class="beta-consent">By joining, you agree that we can email you about WeekScale beta testing. See our <a href="/privacy">privacy notice</a>.</p>
         </form>
         {{end}}
+    </div>
+</section>
+
+<section class="section shell">
+    <div class="section-heading split-heading">
+        <div>
+            <p class="eyebrow"><span></span> What's next</p>
+            <h2>A small app, with a deliberate plan.</h2>
+        </div>
+        <p>The roadmap is shaped by beta feedback and is mostly UI-focused right now. After that, the plan is to sync from Apple Health on iOS and Google Health Connect on Android &mdash; reads only from your device. <a class="text-link" href="/about">See the plan</a></p>
+    </div>
+    <div class="detail-list">
+        <div><strong>Now</strong><span>UI-focused refinements</span></div>
+        <div><strong>Next</strong><span>Apple Health sync on iOS</span></div>
+        <div><strong>Next</strong><span>Health Connect on Android</span></div>
     </div>
 </section>
 

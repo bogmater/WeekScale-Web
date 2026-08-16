@@ -24,6 +24,7 @@ func (app *application) routes() http.Handler {
 	mux.Handle("/static/*", app.cacheStaticFiles(fileServer))
 
 	mux.Get("/", app.home)
+	mux.Get("/about", app.about)
 	mux.Post("/beta", app.submitBeta)
 	mux.Get("/faq", app.faq)
 	mux.Get("/healthz", app.healthcheck)

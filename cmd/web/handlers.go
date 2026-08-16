@@ -129,6 +129,15 @@ func (app *application) healthcheck(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("ok\n"))
 }
 
+func (app *application) about(w http.ResponseWriter, r *http.Request) {
+	data := app.newTemplateData(r)
+
+	err := response.Page(w, http.StatusOK, data, "pages/about.tmpl")
+	if err != nil {
+		app.serverError(w, r, err)
+	}
+}
+
 func (app *application) faq(w http.ResponseWriter, r *http.Request) {
 	data := app.newTemplateData(r)
 

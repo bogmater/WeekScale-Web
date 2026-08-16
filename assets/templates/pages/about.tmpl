@@ -1,0 +1,85 @@
+{{define "page:title"}}About WeekScale: Built for the Weekly Format | WeekScale{{end}}
+
+{{define "page:meta"}}
+<meta name="page" content="about">
+<meta name="description" content="Why WeekScale exists: a weekly-average weight tracker built by one person, with no subscriptions, no ads, no unnecessary accounts, and a feedback-driven roadmap.">
+<meta property="og:title" content="About WeekScale: Built for the Weekly Format">
+<meta property="og:description" content="Why WeekScale exists and where it is headed: a weekly-average weight tracker built by one person, with no subscriptions, ads, or unnecessary accounts.">
+<meta property="og:type" content="article">
+<meta name="twitter:title" content="About WeekScale: Built for the Weekly Format">
+<meta name="twitter:description" content="Why WeekScale exists and where it is headed.">
+{{end}}
+
+{{define "page:main"}}
+<article class="guide" itemscope itemtype="https://schema.org/Article">
+    <meta itemprop="datePublished" content="2026-08-16">
+    <meta itemprop="dateModified" content="2026-08-16">
+    <meta itemprop="image" content="{{.SocialImageURL}}">
+    <span hidden itemprop="author publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="WeekScale"></span>
+
+    <header class="page-hero guide-hero shell">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="/">WeekScale</a><span aria-hidden="true">/</span><span>About</span>
+        </nav>
+        <p class="eyebrow"><span></span> Made by one person</p>
+        <h1 itemprop="headline">I built the tracker I wanted to use.</h1>
+        <p itemprop="description">WeekScale is built by one person. It exists because I wanted a weight tracker that was genuinely focused on the weekly format, and I could not find one that was.</p>
+    </header>
+
+    <div class="guide-layout shell">
+        <nav class="contents-nav guide-nav" aria-label="Article sections">
+            <span>In this story</span>
+            <a href="#why">Why I built it</a>
+            <a href="#values">The values</a>
+            <a href="#roadmap">What's next</a>
+        </nav>
+
+        <div class="guide-content" itemprop="articleBody">
+            <section class="prose-section" id="why">
+                <p class="guide-kicker">The short story</p>
+                <p>I wanted a weight tracker that was hyper-focused on the weekly format: no rolling averages, no dashboard stuffed with features I never used, no ads, no subscription nagging, and no forced account just to use my own data.</p>
+                <p>When I could not find that, I built it. If you are here for the same reasons, this is probably the tracker you were looking for too.</p>
+                <div class="guide-principle">
+                    <strong>No subscriptions. No ads. No accounts.</strong>
+                    <span>WeekScale stays simple because a weekly average is already the whole idea.</span>
+                </div>
+            </section>
+
+            <section class="prose-section" id="values">
+                <p class="guide-kicker">What WeekScale refuses to be</p>
+                <p>Those are the values I look for in an app I use myself. I believe in them, so WeekScale is built around them rather than around growth tactics.</p>
+                <ul class="check-list">
+                    <li>A calendar week, not a moving window</li>
+                    <li>No subscription &mdash; pay once, keep updates</li>
+                    <li>No ads, no analytics, no AI gimmicks</li>
+                    <li>No account &mdash; data stays on your device</li>
+                    <li>No data sharing</li>
+                </ul>
+            </section>
+
+            <section class="prose-section" id="roadmap">
+                <p class="guide-kicker">The plan</p>
+                <p>WeekScale is a solo project, so the scope stays honest. The roadmap is shaped by beta feedback and is mostly UI-focused right now: refining the weekly view, navigation, and the small details that make it calm to use.</p>
+                <p>From there, the plan is to sync weigh-ins from Apple Health on iOS and Google Health Connect on Android, depending on the platform.</p>
+                <div class="detail-list">
+                    <div><strong>Now</strong><span>UI-focused refinements</span></div>
+                    <div><strong>Next</strong><span>Apple Health on iOS</span></div>
+                    <div><strong>Next</strong><span>Health Connect on Android</span></div>
+                </div>
+                <div class="guide-principle">
+                    <strong>Sync stays on your device.</strong>
+                    <span>Health data is read locally when you choose to import it &mdash; nothing is uploaded.</span>
+                </div>
+                <p>Questions, ideas, or feedback? Send them through the <a href="/support">support form</a>. Every message helps shape what comes next.</p>
+            </section>
+
+            <section class="guide-cta">
+                <p class="eyebrow"><span></span> Join the journey</p>
+                <h2>Your week is the unit.</h2>
+                <p>Help shape WeekScale by joining the beta and telling me what you would like to see.</p>
+                <a class="button button-primary" href="/#beta">Join the WeekScale beta</a>
+            </section>
+        </div>
+    </div>
+</article>
+{{end}}

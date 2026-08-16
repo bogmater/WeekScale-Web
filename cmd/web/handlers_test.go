@@ -26,6 +26,27 @@ func TestHome(t *testing.T) {
 		assert.True(t, strings.Contains(res.Body, `data-ios-src="/static/img/weekscale-ios-dashboard-720.webp`))
 		assert.True(t, strings.Contains(res.Body, "weekscale-ios-entry-1080.webp"))
 		assert.True(t, strings.Contains(res.Body, "weekscale-ios-trend-720.webp"))
+		assert.True(t, strings.Contains(res.Body, "I built the tracker I wanted to use."))
+		assert.True(t, strings.Contains(res.Body, "A small app, with a deliberate plan."))
+		assert.True(t, strings.Contains(res.Body, `href="/about"`))
+	})
+}
+
+func TestAboutPage(t *testing.T) {
+	t.Run("renders the story, values, and roadmap", func(t *testing.T) {
+		app := newTestApplication(t)
+		req := newTestRequest(t, http.MethodGet, "/about")
+
+		res := send(t, req, app.routes())
+		assert.Equal(t, res.StatusCode, http.StatusOK)
+		assert.True(t, containsPageTag(t, res.Body, "about"))
+		assert.True(t, strings.Contains(res.Body, "I built the tracker I wanted to use."))
+		assert.True(t, strings.Contains(res.Body, "No data sharing"))
+		assert.True(t, strings.Contains(res.Body, "UI-focused refinements"))
+		assert.True(t, strings.Contains(res.Body, "Apple Health on iOS"))
+		assert.True(t, strings.Contains(res.Body, "Health Connect on Android"))
+		assert.True(t, strings.Contains(res.Body, "nothing is uploaded"))
+		assert.True(t, strings.Contains(res.Body, `href="/support"`))
 	})
 }
 
@@ -48,6 +69,7 @@ func TestContentPages(t *testing.T) {
 		pageTag string
 	}{
 		{name: "FAQ", path: "/faq", pageTag: "faq"},
+		{name: "about", path: "/about", pageTag: "about"},
 		{name: "private weight tracker", path: "/private-weight-tracker", pageTag: "private-weight-tracker"},
 		{name: "privacy", path: "/privacy", pageTag: "privacy"},
 		{name: "support", path: "/support", pageTag: "support"},
@@ -62,7 +84,7 @@ func TestContentPages(t *testing.T) {
 			res := send(t, req, app.routes())
 			assert.Equal(t, res.StatusCode, http.StatusOK)
 			assert.True(t, containsPageTag(t, res.Body, tt.pageTag))
-			if tt.path == "/faq" || tt.path == "/privacy" || tt.path == "/support" {
+			if tt.path == "/faq" || tt.path == "/privacy" || tt.path == "/support" || tt.path == "/about" {
 				assert.True(t, containsHTMLNode(t, res.Body, `nav a[aria-current="page"]`))
 			}
 			if tt.path == "/support" {

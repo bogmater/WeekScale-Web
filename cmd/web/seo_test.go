@@ -91,6 +91,7 @@ func TestSitemap(t *testing.T) {
 	assert.True(t, strings.Contains(res.Body, `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`))
 	for _, location := range []string{
 		"https://www.weekscale.net/",
+		"https://www.weekscale.net/about",
 		"https://www.weekscale.net/faq",
 		"https://www.weekscale.net/private-weight-tracker",
 		"https://www.weekscale.net/privacy",

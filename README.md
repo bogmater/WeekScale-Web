@@ -9,6 +9,7 @@ The site is a server-rendered Go application. HTML templates, CSS, screenshots, 
 ## Pages
 
 - `/` - marketing landing page
+- `/about` - why WeekScale exists and where it is headed
 - `/faq` - product and privacy questions
 - `/weekly-average-weight` - guide to calendar-week averages and rolling averages
 - `/private-weight-tracker` - guide to local-first weight tracking and data privacy
