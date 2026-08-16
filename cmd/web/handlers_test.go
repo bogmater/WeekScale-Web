@@ -67,6 +67,30 @@ func TestContentPages(t *testing.T) {
 	}
 }
 
+func TestIOSPrivacyDisclosures(t *testing.T) {
+	tests := []struct {
+		path string
+		want string
+	}{
+		{path: "/", want: "the iOS app makes no direct network requests"},
+		{path: "/faq", want: "Apple-managed device or iCloud Backup"},
+		{path: "/privacy", want: "CloudKit app synchronization is disabled on iOS"},
+		{path: "/private-weight-tracker", want: "The iOS app stores entries with SwiftData"},
+	}
+
+	app := newTestApplication(t)
+	for _, tt := range tests {
+		t.Run(tt.path, func(t *testing.T) {
+			req := newTestRequest(t, http.MethodGet, tt.path)
+			res := send(t, req, app.routes())
+
+			assert.Equal(t, res.StatusCode, http.StatusOK)
+			assert.True(t, strings.Contains(res.Body, tt.want))
+			assert.True(t, !strings.Contains(res.Body, "iOS version is still in development"))
+		})
+	}
+}
+
 func TestSubmitBeta(t *testing.T) {
 	validForm := func() url.Values {
 		return url.Values{

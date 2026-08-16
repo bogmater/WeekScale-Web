@@ -14,13 +14,13 @@
 <header class="page-hero shell">
     <p class="eyebrow"><span></span> Privacy without fine-print games</p>
     <h1>Your data stays yours.</h1>
-    <p>This page separates the Android app from this website because they handle information differently. The app is local-first; the website only receives information you choose to send through support.</p>
+    <p>This page separates the iOS and Android apps from this website because they handle information differently. The apps are local-first; the website only receives information you choose to send through its forms.</p>
 </header>
 
 <div class="content-layout shell">
     <nav class="contents-nav" aria-label="Privacy page sections">
         <span>On this page</span>
-        <a href="#app-data">Android app</a>
+        <a href="#app-data">Mobile apps</a>
         <a href="#backups">System backups</a>
         <a href="#csv">CSV sharing</a>
         <a href="#website">Website</a>
@@ -29,23 +29,28 @@
 
     <div class="prose">
         <section class="prose-section" id="app-data">
-            <h2>The Android app</h2>
-            <p>WeekScale stores weight entries in a database inside the app's private internal storage. Display preferences, setup choices, graph settings, and reminder settings are also stored locally on your device.</p>
-            <p>The app does not request Android's internet permission. It has no WeekScale account, proprietary cloud synchronization, advertising SDK, analytics, telemetry, AI models, Firebase, Sentry, Crashlytics, or other remote crash-reporting SDK.</p>
+            <h2>The iOS and Android apps</h2>
+            <p>Both apps store weight entries and preferences in private storage on your device. Android uses a private app database and local preferences. iOS uses a private SwiftData store and local preferences. CloudKit app synchronization is disabled on iOS.</p>
+            <p>Neither app has a WeekScale account, proprietary cloud synchronization, advertising SDK, analytics, telemetry, tracking, AI models, Firebase, Sentry, Crashlytics, or another remote crash-reporting SDK.</p>
+            <p>The Android app does not request internet permission. The iOS app makes no direct network requests and has no third-party runtime dependencies. Unlike Android, iOS does not provide a general internet permission that an app can decline, so these are different technical guarantees.</p>
             <p>Weekly averages, ranges, trends, and Reliability Scores use ordinary on-device calculations. Weight history is not sent to an AI service for processing.</p>
-            <p>WeekScale does not add weight values or weigh-in dates to application logs, exception messages, analytics events, or reminder notification text.</p>
+            <p>WeekScale does not add weight values or weigh-in dates to application logs, exception messages, analytics events, or reminder notification text. Optional reminders use local notifications and notification permission is requested only after you enable a reminder.</p>
         </section>
 
         <section class="prose-section" id="backups">
-            <h2>Android system backup</h2>
+            <h2>System backups</h2>
+            <h3>Android</h3>
             <p>Android system backup and device transfer are enabled. Depending on your Android version, device manufacturer, account settings, and selected backup transport, the app's database and preferences may be included in Android-managed cloud backup or transferred to another device.</p>
             <p>This backup is managed by Android and your device or account provider. It is not a WeekScale account or a WeekScale-operated synchronization service.</p>
-            <p>Android may also collect platform crash and performance diagnostics from people who enable Android usage and diagnostics sharing. Those platform reports are controlled by Android, not by an SDK built into WeekScale.</p>
+            <h3>iOS</h3>
+            <p>Apple-managed device or iCloud Backup may include WeekScale's private SwiftData store and preferences, depending on your device and backup settings. This is separate from CloudKit app synchronization, which WeekScale disables.</p>
+            <p>These backups are controlled by Apple and your Apple Account settings. WeekScale does not operate the backup service and cannot inspect or restore your backup.</p>
+            <p>Android and Apple may also collect platform crash or performance diagnostics from people who enable diagnostic sharing. Those platform reports are controlled by the operating-system provider, not by an SDK built into WeekScale.</p>
         </section>
 
         <section class="prose-section" id="csv">
             <h2>Import and CSV sharing</h2>
-            <p>Files selected for import are read on your device. CSV export only occurs after you request it. The app prepares an export in its cache and passes temporary read access to the application you choose through Android's share sheet.</p>
+            <p>Files selected for import are read on your device through the platform's file-selection interface. CSV export only occurs after you request it. Android prepares the export in its cache; iOS prepares it in temporary app storage. The file is then passed to the destination you choose through the system share interface.</p>
             <p>Exported files contain weight history and should be treated as sensitive. The privacy practices of an application or service you choose to share with are governed by that provider.</p>
         </section>
 
@@ -63,9 +68,9 @@
         <section class="prose-section" id="contact">
             <h2>Questions and changes</h2>
             <p>You can ask a privacy question through the <a href="/support">support form</a>. The destination email address is kept on the server rather than published on the page.</p>
-            <p>Both the iOS and Android versions will follow the same local-first principles. This notice will be updated with each platform's specific storage and backup behavior before public availability.</p>
+            <p>This notice documents the current implementation of the pre-release iOS and Android apps. Platform behavior will be reviewed again before each public release.</p>
             <p>This notice may be updated when the app is released, the website changes, or legal and distribution requirements become clearer. Material changes will be reflected on this page.</p>
-            <p><strong>Last updated:</strong> 15 August 2026</p>
+            <p><strong>Last updated:</strong> 16 August 2026</p>
         </section>
     </div>
 </div>

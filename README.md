@@ -12,7 +12,7 @@ The site is a server-rendered Go application. HTML templates, CSS, screenshots, 
 - `/faq` - product and privacy questions
 - `/weekly-average-weight` - guide to calendar-week averages and rolling averages
 - `/private-weight-tracker` - guide to local-first weight tracking and data privacy
-- `/privacy` - Android app and website privacy details
+- `/privacy` - iOS, Android, and website privacy details
 - `/support` - spam-resistant support contact form
 
 ## Run locally

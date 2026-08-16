@@ -62,6 +62,7 @@
                             <tr><td>CSV export</td><td>Created only after a user action, then shared with an app the user chooses.</td></tr>
                             <tr><td>Reminder scheduling</td><td>Handled through local mobile operating-system facilities.</td></tr>
                             <tr><td>Android system backup or device transfer</td><td>Potentially handled by Android and the user's selected backup provider.</td></tr>
+                            <tr><td>Apple device or iCloud Backup</td><td>May include the iOS app's private data, depending on the user's Apple backup settings.</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -69,15 +70,16 @@
 
             <section class="prose-section" id="no-account">
                 <h2>No account, analytics, advertising, or AI processing</h2>
-                <p>WeekScale does not need an identity profile to calculate an average. The current Android app has no account system, advertising SDK, analytics SDK, remote crash-reporting SDK, proprietary synchronization service, or AI model.</p>
-                <p>It also does not request Android's internet permission. That creates an operating-system-enforced constraint: the Android application cannot quietly upload a weight history because it has no permission to make an internet connection.</p>
-                <p>The iOS version is still in development. Its platform-specific storage, entitlement, and backup behavior will be documented before release rather than assumed to be identical.</p>
+                <p>WeekScale does not need an identity profile to calculate an average. The iOS and Android apps have no account system, advertising SDK, analytics SDK, remote crash-reporting SDK, proprietary synchronization service, or AI model.</p>
+                <p>Android does not grant WeekScale internet permission. That is an operating-system-enforced constraint. The iOS app makes no direct network requests and contains no third-party runtime dependencies, but iOS does not offer an equivalent general internet permission that an app can decline.</p>
+                <p>The iOS app stores entries with SwiftData and explicitly disables CloudKit app synchronization. It does not access HealthKit or other sensitive device data.</p>
             </section>
 
             <section class="prose-section" id="backups">
                 <h2>Local-first does not mean &ldquo;never included in a backup&rdquo;</h2>
                 <p>Android system backup and device transfer are intentionally enabled. Depending on the device, Android version, account settings, and backup transport, the app database and preferences may be copied through an Android-managed service.</p>
                 <p>That is not WeekScale cloud synchronization, but it is still a way data can leave the physical device. A credible privacy statement should disclose the distinction. Android documents the platform mechanism in its <a href="https://developer.android.com/identity/data/autobackup" rel="external">Auto Backup guidance</a>.</p>
+                <p>On iOS, Apple-managed device or iCloud Backup may include the private SwiftData store and preferences. CloudKit app synchronization remains disabled. Apple explains how users control this separately in its <a href="https://support.apple.com/guide/iphone/back-up-iphone-iph3ecf67d29/ios" rel="external">iPhone backup guidance</a>.</p>
                 <p>Mobile platforms also sandbox applications to restrict access to each app's private data. Apple describes its platform-level approach in the <a href="https://support.apple.com/guide/security/app-security-overview-sec35dd877d0/web" rel="external">Apple Platform Security guide</a>.</p>
             </section>
 

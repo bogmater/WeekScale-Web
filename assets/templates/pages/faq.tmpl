@@ -46,15 +46,15 @@
         </article>
         <article class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
             <h3 itemprop="name">Does the app send my weight anywhere?</h3>
-            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">No. The Android app does not request internet access and contains no analytics, advertising, telemetry, Firebase, Sentry, or remote crash-reporting SDK.</span></p>
+            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">WeekScale does not directly transmit your weight history. Android does not grant the app internet permission, while the iOS app makes no direct network requests and has no third-party runtime dependencies. System-managed backups may include app data, and an export leaves the app only when you choose a share destination.</span></p>
         </article>
         <article class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
-            <h3 itemprop="name">Can Android back up the app?</h3>
-            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">Potentially. Android system backup and device transfer are enabled. Depending on your device and Android settings, app data may be included in an Android-managed backup associated with your device account. This is not a WeekScale-operated service.</span></p>
+            <h3 itemprop="name">Can iOS or Android back up the app?</h3>
+            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">Potentially. Android system backup and device transfer are enabled, and Apple-managed device or iCloud Backup may include the iOS app's private data. Inclusion depends on your device and backup settings. These are platform services, not WeekScale-operated synchronization; CloudKit app sync is disabled.</span></p>
         </article>
         <article class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
             <h3 itemprop="name">Can I import or export my history?</h3>
-            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">Yes. WeekScale imports common CSV, TSV, and text formats with flexible column mapping and date recognition. Export is always initiated by you and uses Android's standard share sheet.</span></p>
+            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">Yes. WeekScale imports common CSV, TSV, and text formats with flexible column mapping and date recognition. Export is always initiated by you and uses the platform's system share interface.</span></p>
         </article>
     </section>
 
@@ -78,15 +78,15 @@
         </article>
         <article class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
             <h3 itemprop="name">Are reminders required?</h3>
-            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">No. Daily weigh-in and monthly backup reminders are optional and disabled by default. Android notification permission is requested only after you enable a reminder.</span></p>
+            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">No. Daily weigh-in and monthly backup reminders are optional and disabled by default. On both platforms, notification permission is requested only after you enable a reminder. Reminders are local and do not include your weight.</span></p>
         </article>
         <article class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
             <h3 itemprop="name">Which Android versions are supported?</h3>
             <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">The planned release supports Android 7.0 and later.</span></p>
         </article>
         <article class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
-            <h3 itemprop="name">Will there be an iPhone version?</h3>
-            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">Yes. WeekScale is coming to both iOS and Android. Platform requirements will be published as development progresses.</span></p>
+            <h3 itemprop="name">Is there an iPhone version?</h3>
+            <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><span itemprop="text">A native iPhone version is currently in internal development and is not publicly downloadable yet. The planned release requires iOS 17 or later.</span></p>
         </article>
     </section>
 
