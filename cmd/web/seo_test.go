@@ -20,6 +20,8 @@ func TestSEOMetadata(t *testing.T) {
 		assert.True(t, containsHTMLNode(t, res.Body, `link[rel="canonical"][href="https://www.weekscale.net/"]`))
 		assert.True(t, containsHTMLNode(t, res.Body, `meta[property="og:image"][content="https://www.weekscale.net/static/img/weekscale-social.png"]`))
 		assert.True(t, containsHTMLNode(t, res.Body, `[itemtype="https://schema.org/SoftwareApplication"]`))
+		assert.True(t, containsHTMLNode(t, res.Body, `[itemtype="https://schema.org/Offer"] [itemprop="price"][content="6.00"]`))
+		assert.True(t, containsHTMLNode(t, res.Body, `[itemtype="https://schema.org/Offer"] [itemprop="price"][content="5.00"]`))
 		assert.True(t, containsHTMLNode(t, res.Body, `[itemtype="https://schema.org/Offer"] [itemprop="priceCurrency"][content="USD"]`))
 		assert.True(t, containsHTMLNode(t, res.Body, `[itemtype="https://schema.org/Offer"] [itemprop="priceCurrency"][content="EUR"]`))
 	})
