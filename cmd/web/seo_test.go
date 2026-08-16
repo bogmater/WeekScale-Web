@@ -90,8 +90,10 @@ func TestSitemap(t *testing.T) {
 	for _, location := range []string{
 		"https://www.weekscale.net/",
 		"https://www.weekscale.net/faq",
+		"https://www.weekscale.net/private-weight-tracker",
 		"https://www.weekscale.net/privacy",
 		"https://www.weekscale.net/support",
+		"https://www.weekscale.net/weekly-average-weight",
 	} {
 		assert.True(t, strings.Contains(res.Body, "<loc>"+location+"</loc>"))
 	}

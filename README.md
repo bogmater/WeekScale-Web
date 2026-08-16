@@ -125,4 +125,6 @@ Keep SMTP variables and `TURNSTILE_SECRET_KEY` runtime-only in Coolify. `TURNSTI
 
 Create one Cloudflare Turnstile widget for `www.weekscale.net`. Both forms use that widget with separate `beta` and `support` action names, which are validated by the server. The forms fail closed with a temporary-unavailable response when either Turnstile key is missing.
 
-Point the `www` DNS record to the Coolify server before adding the HTTPS domain so Coolify can issue its Let's Encrypt certificate. If the bare `weekscale.net` domain will also be used, redirect it to `https://www.weekscale.net` rather than serving duplicate content.
+Point both the `www` and bare DNS records to the deployment before issuing certificates for both hostnames. The application permanently redirects recognized HTTP and bare-domain requests directly to the `BASE_URL` origin while preserving the path and query string.
+
+Coolify or another edge proxy may redirect HTTP to HTTPS before a request reaches the application. Do not combine a same-host HTTP redirect with a separate bare-to-`www` redirect, because that creates two hops. Configure the edge to send every non-canonical variant directly to `https://www.weekscale.net` with status `301` or `308`. If Cloudflare proxies the domain, create the bare-host redirect there before enabling its general HTTPS redirect; HTTP requests for `www` can use a direct permanent HTTPS redirect.

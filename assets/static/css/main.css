@@ -1116,7 +1116,10 @@ a.button-secondary:hover {
 
 .footer-nav {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
     gap: 24px;
+    max-width: 430px;
     color: #b7c2ce;
     font-size: 13px;
     font-weight: 700;
@@ -1235,6 +1238,260 @@ a.button-secondary:hover {
     color: #cfdae3;
     background: rgba(142, 209, 199, 0.07);
     border-left: 3px solid var(--mint);
+}
+
+/* Guides */
+.guide-hero {
+    position: relative;
+    overflow: hidden;
+    padding-top: 48px;
+}
+
+.guide-hero::after {
+    position: absolute;
+    right: 4%;
+    bottom: -150px;
+    width: 330px;
+    height: 330px;
+    background: rgba(73, 214, 197, 0.07);
+    border-radius: 50%;
+    content: "";
+    filter: blur(2px);
+}
+
+.guide-hero h1,
+.guide-hero > p {
+    position: relative;
+    z-index: 1;
+}
+
+.breadcrumbs {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 9px;
+    margin-bottom: 70px;
+    color: #768499;
+    font-size: 12px;
+}
+
+.breadcrumbs a:hover {
+    color: var(--mint);
+}
+
+.guide-layout {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 800px);
+    gap: 90px;
+    justify-content: center;
+    padding-block: 80px 130px;
+}
+
+.guide-summary {
+    scroll-margin-top: 30px;
+    margin-bottom: 65px;
+    padding: 32px 35px;
+    color: var(--navy-900);
+    background: var(--mint);
+    border-radius: 10px;
+}
+
+.guide-summary p {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 650;
+    line-height: 1.55;
+}
+
+.guide-summary .guide-kicker {
+    margin-bottom: 9px;
+    color: var(--navy-700);
+    font-size: 10px;
+    font-weight: 850;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.guide-principle,
+.medical-note {
+    margin: 29px 0 20px;
+    padding: 24px 26px;
+    background: rgba(142, 209, 199, 0.07);
+    border-left: 3px solid var(--mint);
+}
+
+.guide-principle strong,
+.guide-principle span {
+    display: block;
+}
+
+.guide-principle span {
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.calculation-card {
+    display: grid;
+    gap: 1px;
+    margin: 30px 0;
+    overflow: hidden;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 9px;
+}
+
+.calculation-card p {
+    display: grid;
+    grid-template-columns: minmax(130px, 0.45fr) 1fr;
+    gap: 24px;
+    align-items: center;
+    margin: 0;
+    padding: 18px 21px;
+    background: var(--navy-800);
+}
+
+.calculation-card span {
+    color: #7f8da0;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.calculation-card strong {
+    color: var(--paper);
+    font-size: 15px;
+}
+
+.calculation-card .calculation-result {
+    background: var(--green);
+}
+
+.calculation-card .calculation-result strong {
+    color: var(--mint);
+    font-size: 20px;
+}
+
+.comparison-table-wrap {
+    margin: 29px 0;
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 14px;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 17px 20px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+    vertical-align: top;
+}
+
+.comparison-table th:last-child,
+.comparison-table td:last-child {
+    border-right: 0;
+}
+
+.comparison-table tr:last-child td {
+    border-bottom: 0;
+}
+
+.comparison-table th {
+    color: var(--paper);
+    background: var(--navy-700);
+    font-size: 12px;
+}
+
+.comparison-table td {
+    color: #b7c2ce;
+    background: rgba(23, 32, 51, 0.68);
+}
+
+.data-map th:first-child {
+    width: 38%;
+}
+
+.medical-note strong {
+    color: var(--paper);
+}
+
+.medical-note p {
+    margin: 6px 0 0;
+    font-size: 14px;
+}
+
+.privacy-checklist {
+    display: grid;
+    gap: 1px;
+    margin: 28px 0;
+    padding: 1px;
+    background: var(--line);
+    counter-reset: privacy-step;
+    list-style: none;
+}
+
+.privacy-checklist li {
+    position: relative;
+    display: grid;
+    gap: 4px;
+    padding: 20px 22px 20px 65px;
+    background: var(--navy-800);
+    counter-increment: privacy-step;
+}
+
+.privacy-checklist li::before {
+    position: absolute;
+    top: 20px;
+    left: 21px;
+    display: grid;
+    width: 27px;
+    height: 27px;
+    place-items: center;
+    color: var(--navy-950);
+    background: var(--mint);
+    border-radius: 50%;
+    content: counter(privacy-step);
+    font-size: 11px;
+    font-weight: 850;
+}
+
+.privacy-checklist strong {
+    color: var(--paper);
+}
+
+.privacy-checklist span {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.guide-cta {
+    margin-top: 35px;
+    padding: 55px 48px;
+    background: var(--green);
+    border: 1px solid rgba(142, 209, 199, 0.2);
+    border-radius: 12px;
+}
+
+.guide-cta h2 {
+    margin: 0;
+    font-size: clamp(38px, 5vw, 55px);
+    letter-spacing: -0.05em;
+    line-height: 1;
+}
+
+.guide-cta > p:not(.eyebrow) {
+    max-width: 560px;
+    margin: 19px 0 28px;
+    color: #b9ccc5;
 }
 
 .faq-list {
@@ -1735,7 +1992,12 @@ a.button-secondary:hover {
         text-align: left;
     }
 
+    .footer-nav {
+        justify-content: flex-start;
+    }
+
     .content-layout,
+    .guide-layout,
     .support-layout {
         grid-template-columns: 1fr;
         gap: 48px;
@@ -1748,6 +2010,10 @@ a.button-secondary:hover {
 
     .contents-nav span {
         grid-column: 1 / -1;
+    }
+
+    .guide-summary {
+        margin-bottom: 48px;
     }
 }
 
@@ -1845,6 +2111,43 @@ a.button-secondary:hover {
 
     .page-hero {
         padding-block: 75px 50px;
+    }
+
+    .guide-hero {
+        padding-top: 34px;
+    }
+
+    .breadcrumbs {
+        margin-bottom: 48px;
+    }
+
+    .guide-layout {
+        padding-block: 55px 90px;
+    }
+
+    .guide-summary {
+        padding: 26px 23px;
+    }
+
+    .guide-summary p {
+        font-size: 17px;
+    }
+
+    .comparison-table {
+        min-width: 600px;
+    }
+
+    .data-map {
+        min-width: 540px;
+    }
+
+    .calculation-card p {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+
+    .guide-cta {
+        padding: 40px 27px;
     }
 
     .form-row {

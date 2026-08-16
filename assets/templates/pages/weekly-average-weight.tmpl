@@ -1,0 +1,111 @@
+{{define "page:title"}}Weekly Average Weight: Calendar Weeks vs Rolling Averages | WeekScale{{end}}
+
+{{define "page:meta"}}
+<meta name="page" content="weekly-average-weight">
+<meta name="description" content="Learn how a weekly average puts daily weight changes into context, and how fixed calendar weeks differ from a rolling 7-day average.">
+<meta property="og:title" content="Weekly Average Weight: Calendar Weeks vs Rolling Averages">
+<meta property="og:description" content="A practical explanation of weekly weight averages, daily fluctuations, reliability, and rolling 7-day windows.">
+<meta property="og:type" content="article">
+<meta name="twitter:title" content="Weekly Average Weight: Calendar Weeks vs Rolling Averages">
+<meta name="twitter:description" content="A practical explanation of calendar-week averages and rolling 7-day windows.">
+{{end}}
+
+{{define "page:main"}}
+<article class="guide" itemscope itemtype="https://schema.org/Article">
+    <meta itemprop="datePublished" content="2026-08-16">
+    <meta itemprop="dateModified" content="2026-08-16">
+    <meta itemprop="image" content="{{.SocialImageURL}}">
+    <span hidden itemprop="author publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="WeekScale"></span>
+
+    <header class="page-hero guide-hero shell">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="/">WeekScale</a><span aria-hidden="true">/</span><span>Weekly average weight</span>
+        </nav>
+        <p class="eyebrow"><span></span> Understanding the number</p>
+        <h1 itemprop="headline">Why use a weekly average for body weight?</h1>
+        <p itemprop="description">A daily reading is one measurement under one set of conditions. A weekly average combines several readings into a stable calendar period that can be compared with another week.</p>
+    </header>
+
+    <div class="guide-layout shell">
+        <nav class="contents-nav guide-nav" aria-label="Article sections">
+            <span>In this guide</span>
+            <a href="#short-answer">Short answer</a>
+            <a href="#daily-changes">Daily changes</a>
+            <a href="#calculation">The calculation</a>
+            <a href="#calendar-vs-rolling">Calendar vs rolling</a>
+            <a href="#reliability">Reliable averages</a>
+            <a href="#consistent-weighing">Consistency</a>
+        </nav>
+
+        <div class="guide-content" itemprop="articleBody">
+            <section class="guide-summary" id="short-answer">
+                <p class="guide-kicker">The short answer</p>
+                <p>A weekly average does not make daily readings disappear. It gives them context. WeekScale uses fixed Monday&ndash;Sunday or Sunday&ndash;Saturday periods so a finished week remains finished and can be compared directly with another recorded week.</p>
+            </section>
+
+            <section class="prose-section" id="daily-changes">
+                <h2>Why body weight changes from day to day</h2>
+                <p>A scale measures total body mass at that moment. It does not separately identify a change in body fat. Fluid intake and loss, food and drink still being digested, carbohydrate stores, sodium intake, clothing, and the time of measurement can all affect an individual reading.</p>
+                <p>That is why two consecutive mornings can produce different numbers even when the longer-term direction has not meaningfully changed. The daily entry remains useful evidence; it just should not be asked to tell the entire story by itself.</p>
+                <div class="guide-principle">
+                    <strong>Daily readings are observations.</strong>
+                    <span>The weekly average is the period-level summary WeekScale uses for comparison.</span>
+                </div>
+            </section>
+
+            <section class="prose-section" id="calculation">
+                <h2>How a weekly weight average is calculated</h2>
+                <p>Add the recorded weights inside the calendar week, then divide by the number of recorded days. Missing days are not treated as zero.</p>
+                <div class="calculation-card" aria-label="Example weekly average calculation">
+                    <p><span>Recorded weights</span><strong>80.4 + 80.1 + 80.3 + 80.0 + 79.9 kg</strong></p>
+                    <p><span>Number of entries</span><strong>5</strong></p>
+                    <p class="calculation-result"><span>Weekly average</span><strong>80.14 kg</strong></p>
+                </div>
+                <p>WeekScale also shows the minimum, maximum, date range, number of entries, and change from the most recent earlier week that contains data.</p>
+            </section>
+
+            <section class="prose-section" id="calendar-vs-rolling">
+                <h2>Calendar week versus rolling 7-day average</h2>
+                <p>Both methods combine multiple readings, but they answer different questions.</p>
+                <div class="comparison-table-wrap">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr><th scope="col">Calendar-week average</th><th scope="col">Rolling 7-day average</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Uses a fixed Monday&ndash;Sunday or Sunday&ndash;Saturday period.</td><td>Uses today and the six preceding days.</td></tr>
+                            <tr><td>A completed week no longer changes.</td><td>The window changes every day.</td></tr>
+                            <tr><td>Compares distinct, non-overlapping periods.</td><td>Adjacent values usually share six of seven readings.</td></tr>
+                            <tr><td>Answers: &ldquo;How did this week compare with another week?&rdquo;</td><td>Answers: &ldquo;What is the smoothed level around today?&rdquo;</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>A rolling average is a legitimate smoothing method. WeekScale deliberately chooses calendar weeks because its product model is week-to-week comparison, not a moving window that is recalculated every day.</p>
+            </section>
+
+            <section class="prose-section" id="reliability">
+                <h2>More readings make the average more representative</h2>
+                <p>An average based on one reading technically exists, but it says little more than that one reading. WeekScale's Reliability Score reports how many of the seven calendar days contain an entry: one day is 14%, five days is 71%, and seven days is 100%.</p>
+                <p>The score is not a judgment and it does not claim medical certainty. It is a visible reminder of how complete the period is. Weeks with five or more entries receive the app's reliable-week treatment.</p>
+            </section>
+
+            <section class="prose-section" id="consistent-weighing">
+                <h2>Consistency improves comparability</h2>
+                <p>If you choose to weigh regularly, similar conditions make readings easier to compare: roughly the same time of day, similar clothing, the same scale, and a consistent routine. WeekScale records what you enter; it does not attempt to &ldquo;correct&rdquo; a reading with an opaque model.</p>
+                <p>Hydration, nutrition, activity, sleep, medication, health conditions, and many other factors can affect body weight or how it should be interpreted. For general health guidance, use reputable sources such as the <a href="https://www.nhs.uk/better-health/lose-weight/" rel="external">NHS Better Health guidance</a>, and speak with a qualified healthcare professional about personal concerns.</p>
+                <aside class="medical-note">
+                    <strong>WeekScale is a tracking tool, not medical advice.</strong>
+                    <p>It calculates summaries from values you provide. It does not diagnose conditions, define a healthy weight, or recommend a treatment or weight-loss target.</p>
+                </aside>
+            </section>
+
+            <section class="guide-cta">
+                <p class="eyebrow"><span></span> Calendar weeks by design</p>
+                <h2>Your week is the unit.</h2>
+                <p>Log daily when it is useful. Compare weekly averages when you want the broader direction.</p>
+                <a class="button button-primary" href="/#beta">Join the WeekScale beta</a>
+            </section>
+        </div>
+    </div>
+</article>
+{{end}}

@@ -1,0 +1,124 @@
+{{define "page:title"}}Private Weight Tracker: What Local-First Really Means | WeekScale{{end}}
+
+{{define "page:meta"}}
+<meta name="page" content="private-weight-tracker">
+<meta name="description" content="A practical guide to private weight tracking: local storage, accounts, analytics, backups, CSV exports, and the tradeoffs of local-first apps.">
+<meta property="og:title" content="Private Weight Tracker: What Local-First Really Means">
+<meta property="og:description" content="Understand where weight data is stored, when it can leave a device, and what to check before trusting a weight tracker.">
+<meta property="og:type" content="article">
+<meta name="twitter:title" content="Private Weight Tracker: What Local-First Really Means">
+<meta name="twitter:description" content="A practical privacy checklist for weight-tracking apps.">
+{{end}}
+
+{{define "page:main"}}
+<article class="guide" itemscope itemtype="https://schema.org/Article">
+    <meta itemprop="datePublished" content="2026-08-16">
+    <meta itemprop="dateModified" content="2026-08-16">
+    <meta itemprop="image" content="{{.SocialImageURL}}">
+    <span hidden itemprop="author publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="WeekScale"></span>
+
+    <header class="page-hero guide-hero shell">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="/">WeekScale</a><span aria-hidden="true">/</span><span>Private weight tracking</span>
+        </nav>
+        <p class="eyebrow"><span></span> Know where the data goes</p>
+        <h1 itemprop="headline">What makes a weight tracker private?</h1>
+        <p itemprop="description">&ldquo;Private&rdquo; should describe concrete behavior: where entries are stored, which services receive them, what permissions the app requests, and how you can take your history with you.</p>
+    </header>
+
+    <div class="guide-layout shell">
+        <nav class="contents-nav guide-nav" aria-label="Article sections">
+            <span>In this guide</span>
+            <a href="#local-first">Local-first</a>
+            <a href="#data-map">Data map</a>
+            <a href="#no-account">Accounts and tracking</a>
+            <a href="#backups">System backups</a>
+            <a href="#portability">Data portability</a>
+            <a href="#tradeoffs">Tradeoffs</a>
+            <a href="#checklist">Privacy checklist</a>
+        </nav>
+
+        <div class="guide-content" itemprop="articleBody">
+            <section class="guide-summary" id="local-first">
+                <p class="guide-kicker">The short answer</p>
+                <p>A local-first weight tracker keeps its working database on your device and does not require a vendor account or proprietary server to perform its core job. That is stronger and more specific than simply saying an app &ldquo;cares about privacy.&rdquo;</p>
+            </section>
+
+            <section class="prose-section">
+                <h2>Weight history deserves a clear data boundary</h2>
+                <p>Body-weight records are sensitive, health-adjacent personal information. A useful privacy explanation should identify the boundary around that information rather than relying on a broad promise.</p>
+                <p>For WeekScale, the boundary is the mobile device and the platform services the device owner has enabled. There is no WeekScale account or WeekScale-operated cloud database.</p>
+            </section>
+
+            <section class="prose-section" id="data-map">
+                <h2>WeekScale's data map</h2>
+                <div class="comparison-table-wrap">
+                    <table class="comparison-table data-map">
+                        <thead><tr><th scope="col">Data or action</th><th scope="col">Where it goes</th></tr></thead>
+                        <tbody>
+                            <tr><td>Weight entries</td><td>The app's private database on the device.</td></tr>
+                            <tr><td>Units, week start, graph, and reminder settings</td><td>Private preferences on the device.</td></tr>
+                            <tr><td>CSV import</td><td>Read on the device from a file the user selects.</td></tr>
+                            <tr><td>CSV export</td><td>Created only after a user action, then shared with an app the user chooses.</td></tr>
+                            <tr><td>Reminder scheduling</td><td>Handled through local mobile operating-system facilities.</td></tr>
+                            <tr><td>Android system backup or device transfer</td><td>Potentially handled by Android and the user's selected backup provider.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="prose-section" id="no-account">
+                <h2>No account, analytics, advertising, or AI processing</h2>
+                <p>WeekScale does not need an identity profile to calculate an average. The current Android app has no account system, advertising SDK, analytics SDK, remote crash-reporting SDK, proprietary synchronization service, or AI model.</p>
+                <p>It also does not request Android's internet permission. That creates an operating-system-enforced constraint: the Android application cannot quietly upload a weight history because it has no permission to make an internet connection.</p>
+                <p>The iOS version is still in development. Its platform-specific storage, entitlement, and backup behavior will be documented before release rather than assumed to be identical.</p>
+            </section>
+
+            <section class="prose-section" id="backups">
+                <h2>Local-first does not mean &ldquo;never included in a backup&rdquo;</h2>
+                <p>Android system backup and device transfer are intentionally enabled. Depending on the device, Android version, account settings, and backup transport, the app database and preferences may be copied through an Android-managed service.</p>
+                <p>That is not WeekScale cloud synchronization, but it is still a way data can leave the physical device. A credible privacy statement should disclose the distinction. Android documents the platform mechanism in its <a href="https://developer.android.com/identity/data/autobackup" rel="external">Auto Backup guidance</a>.</p>
+                <p>Mobile platforms also sandbox applications to restrict access to each app's private data. Apple describes its platform-level approach in the <a href="https://support.apple.com/guide/security/app-security-overview-sec35dd877d0/web" rel="external">Apple Platform Security guide</a>.</p>
+            </section>
+
+            <section class="prose-section" id="portability">
+                <h2>Your history should not be trapped</h2>
+                <p>Local storage is only one part of ownership. WeekScale can import common CSV, TSV, and text files, and can export the complete recorded history as CSV through the system share sheet.</p>
+                <p>An export is sensitive because it contains weight history outside the app's private database. Once shared to another application, drive, email account, or person, that destination's privacy practices apply. The benefit is that the choice remains explicit and user initiated.</p>
+            </section>
+
+            <section class="prose-section" id="tradeoffs">
+                <h2>The honest tradeoffs of local-only storage</h2>
+                <ul class="guide-list">
+                    <li>There is no WeekScale password to reset and no vendor account to recover.</li>
+                    <li>There is also no WeekScale server that can restore history after data loss.</li>
+                    <li>Automatic multi-device synchronization is not available.</li>
+                    <li>Users are responsible for platform backup settings and optional CSV copies.</li>
+                    <li>Support cannot inspect or repair a private weight database remotely.</li>
+                </ul>
+                <p>Those constraints are deliberate. They reduce convenience in exchange for a smaller data footprint and a much simpler trust model.</p>
+            </section>
+
+            <section class="prose-section" id="checklist">
+                <h2>A privacy checklist for any weight tracker</h2>
+                <ol class="privacy-checklist">
+                    <li><strong>Is an account required?</strong><span>Ask whether the feature actually needs identity or cloud storage.</span></li>
+                    <li><strong>Where is the working database?</strong><span>Look for a concrete answer such as private on-device storage.</span></li>
+                    <li><strong>Which network permissions and SDKs are present?</strong><span>Analytics, ads, crash reporting, and AI services can each create another data path.</span></li>
+                    <li><strong>Can you export everything?</strong><span>A complete, readable export reduces lock-in.</span></li>
+                    <li><strong>What does the operating-system backup do?</strong><span>Local apps can still participate in system-managed cloud backup or device transfer.</span></li>
+                    <li><strong>Does the privacy claim match the implementation?</strong><span>Specific technical constraints are more meaningful than slogans.</span></li>
+                </ol>
+                <p>For the implementation-specific version of these answers, read the <a href="/privacy">WeekScale privacy notice</a>.</p>
+            </section>
+
+            <section class="guide-cta">
+                <p class="eyebrow"><span></span> A deliberately small data footprint</p>
+                <h2>Track the trend, not the user.</h2>
+                <p>No WeekScale account. No proprietary cloud. No advertising, analytics, or AI.</p>
+                <a class="button button-primary" href="/#beta">Join the WeekScale beta</a>
+            </section>
+        </div>
+    </div>
+</article>
+{{end}}

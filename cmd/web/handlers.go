@@ -147,6 +147,24 @@ func (app *application) privacy(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func (app *application) privateWeightTracker(w http.ResponseWriter, r *http.Request) {
+	data := app.newTemplateData(r)
+
+	err := response.Page(w, http.StatusOK, data, "pages/private-weight-tracker.tmpl")
+	if err != nil {
+		app.serverError(w, r, err)
+	}
+}
+
+func (app *application) weeklyAverageWeight(w http.ResponseWriter, r *http.Request) {
+	data := app.newTemplateData(r)
+
+	err := response.Page(w, http.StatusOK, data, "pages/weekly-average-weight.tmpl")
+	if err != nil {
+		app.serverError(w, r, err)
+	}
+}
+
 func (app *application) support(w http.ResponseWriter, r *http.Request) {
 	data := app.newTemplateData(r)
 	data["Form"] = supportForm{}

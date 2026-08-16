@@ -44,6 +44,7 @@ func (app *application) canonicalHost(next http.Handler) http.Handler {
 		return next
 	}
 
+	canonicalHost := canonicalURL.Hostname()
 	bareHost := strings.TrimPrefix(canonicalURL.Hostname(), "www.")
 
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -52,7 +53,23 @@ func (app *application) canonicalHost(next http.Handler) http.Handler {
 			requestHost = host
 		}
 
-		if strings.EqualFold(requestHost, bareHost) {
+		isBareHost := strings.EqualFold(requestHost, bareHost)
+		isCanonicalHost := strings.EqualFold(requestHost, canonicalHost)
+		if !isBareHost && !isCanonicalHost {
+			next.ServeHTTP(w, r)
+			return
+		}
+
+		requestScheme := r.URL.Scheme
+		if forwardedProto, _, ok := strings.Cut(r.Header.Get("X-Forwarded-Proto"), ","); ok || forwardedProto != "" {
+			requestScheme = strings.TrimSpace(forwardedProto)
+		} else if requestScheme == "" && r.TLS != nil {
+			requestScheme = "https"
+		} else if requestScheme == "" {
+			requestScheme = "http"
+		}
+
+		if isBareHost || !strings.EqualFold(requestScheme, canonicalURL.Scheme) {
 			target := canonicalURL.Scheme + "://" + canonicalURL.Host + r.URL.RequestURI()
 			http.Redirect(w, r, target, http.StatusPermanentRedirect)
 			return

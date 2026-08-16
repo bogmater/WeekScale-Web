@@ -27,11 +27,13 @@ func (app *application) routes() http.Handler {
 	mux.Post("/beta", app.submitBeta)
 	mux.Get("/faq", app.faq)
 	mux.Get("/healthz", app.healthcheck)
+	mux.Get("/private-weight-tracker", app.privateWeightTracker)
 	mux.Get("/privacy", app.privacy)
 	mux.Get("/robots.txt", app.robots)
 	mux.Get("/sitemap.xml", app.sitemap)
 	mux.Get("/support", app.support)
 	mux.Post("/support", app.submitSupport)
+	mux.Get("/weekly-average-weight", app.weeklyAverageWeight)
 
 	return mux
 }

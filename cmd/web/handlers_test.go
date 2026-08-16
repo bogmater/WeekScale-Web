@@ -43,8 +43,10 @@ func TestContentPages(t *testing.T) {
 		pageTag string
 	}{
 		{name: "FAQ", path: "/faq", pageTag: "faq"},
+		{name: "private weight tracker", path: "/private-weight-tracker", pageTag: "private-weight-tracker"},
 		{name: "privacy", path: "/privacy", pageTag: "privacy"},
 		{name: "support", path: "/support", pageTag: "support"},
+		{name: "weekly average weight", path: "/weekly-average-weight", pageTag: "weekly-average-weight"},
 	}
 
 	for _, tt := range tests {
@@ -55,7 +57,9 @@ func TestContentPages(t *testing.T) {
 			res := send(t, req, app.routes())
 			assert.Equal(t, res.StatusCode, http.StatusOK)
 			assert.True(t, containsPageTag(t, res.Body, tt.pageTag))
-			assert.True(t, containsHTMLNode(t, res.Body, `nav a[aria-current="page"]`))
+			if tt.path == "/faq" || tt.path == "/privacy" || tt.path == "/support" {
+				assert.True(t, containsHTMLNode(t, res.Body, `nav a[aria-current="page"]`))
+			}
 			if tt.path == "/support" {
 				assert.True(t, containsHTMLNode(t, res.Body, `.cf-turnstile[data-action="support"][data-sitekey="test-site-key"]`))
 			}

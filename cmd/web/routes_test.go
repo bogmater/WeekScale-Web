@@ -44,10 +44,43 @@ func TestRoutes(t *testing.T) {
 		app := newTestApplication(t)
 		req := newTestRequest(t, http.MethodGet, "/faq?from=apex")
 		req.Host = "weekscale.net"
+		req.Header.Set("X-Forwarded-Proto", "http")
 
 		res := send(t, req, app.routes())
 		assert.Equal(t, res.StatusCode, http.StatusPermanentRedirect)
 		assert.Equal(t, res.Header.Get("Location"), "https://www.weekscale.net/faq?from=apex")
+	})
+
+	t.Run("Redirects HTTPS on the bare production domain to www", func(t *testing.T) {
+		app := newTestApplication(t)
+		req := newTestRequest(t, http.MethodGet, "/faq?from=secure-apex")
+		req.Host = "weekscale.net"
+		req.Header.Set("X-Forwarded-Proto", "https")
+
+		res := send(t, req, app.routes())
+		assert.Equal(t, res.StatusCode, http.StatusPermanentRedirect)
+		assert.Equal(t, res.Header.Get("Location"), "https://www.weekscale.net/faq?from=secure-apex")
+	})
+
+	t.Run("Redirects HTTP on the canonical host to HTTPS", func(t *testing.T) {
+		app := newTestApplication(t)
+		req := newTestRequest(t, http.MethodGet, "/privacy?from=http")
+		req.Host = "www.weekscale.net"
+		req.Header.Set("X-Forwarded-Proto", "http")
+
+		res := send(t, req, app.routes())
+		assert.Equal(t, res.StatusCode, http.StatusPermanentRedirect)
+		assert.Equal(t, res.Header.Get("Location"), "https://www.weekscale.net/privacy?from=http")
+	})
+
+	t.Run("Serves HTTPS requests on the canonical host", func(t *testing.T) {
+		app := newTestApplication(t)
+		req := newTestRequest(t, http.MethodGet, "/faq")
+		req.Host = "www.weekscale.net"
+		req.Header.Set("X-Forwarded-Proto", "https")
+
+		res := send(t, req, app.routes())
+		assert.Equal(t, res.StatusCode, http.StatusOK)
 	})
 
 	t.Run("Serves the brand mark", func(t *testing.T) {
