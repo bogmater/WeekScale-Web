@@ -300,6 +300,48 @@ a.button-secondary:hover {
     content: "";
 }
 
+.platform-switcher {
+    position: absolute;
+    z-index: 5;
+    top: 28px;
+    left: 50%;
+    display: inline-flex;
+    gap: 4px;
+    padding: 4px;
+    background: rgba(23, 32, 51, 0.92);
+    border: 1px solid rgba(142, 209, 199, 0.22);
+    border-radius: 999px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.24);
+    backdrop-filter: blur(10px);
+    transform: translateX(-50%);
+}
+
+.platform-switcher button {
+    padding: 8px 15px;
+    color: var(--muted);
+    background: transparent;
+    border: 0;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: color 160ms ease, background-color 160ms ease;
+}
+
+.platform-switcher button:hover {
+    color: var(--paper);
+}
+
+.platform-switcher button.is-active {
+    color: var(--navy-950);
+    background: var(--mint);
+}
+
+.platform-switcher button:focus-visible {
+    outline: 3px solid rgba(142, 209, 199, 0.28);
+    outline-offset: 2px;
+}
+
 .orbit {
     position: absolute;
     z-index: -1;

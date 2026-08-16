@@ -10,6 +10,7 @@
 <meta name="twitter:description" content="Your week is the unit. Compare calendar-week averages without a rolling 7-day window.">
 {{if .BetaSent}}<meta name="robots" content="noindex,follow">{{end}}
 {{if .TurnstileSiteKey}}<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>{{end}}
+<script defer src="/static/js/platform-switcher.js?version={{.Version}}"></script>
 {{end}}
 
 {{define "page:main"}}
@@ -45,10 +46,14 @@
         </ul>
     </div>
     <div class="hero-visual" aria-label="WeekScale weekly dashboard preview">
+        <div class="platform-switcher" role="group" aria-label="Choose which platform screenshots to show">
+            <button type="button" data-platform="android" class="is-active" aria-pressed="true">Android</button>
+            <button type="button" data-platform="ios" aria-pressed="false">iOS</button>
+        </div>
         <div class="orbit orbit-one"></div>
         <div class="orbit orbit-two"></div>
         <div class="phone phone-hero">
-            <img src="/static/img/weekscale-dashboard-720.webp?version={{.Version}}" srcset="/static/img/weekscale-dashboard-720.webp?version={{.Version}} 720w, /static/img/weekscale-dashboard-1080.webp?version={{.Version}} 1080w" sizes="(max-width: 500px) 240px, (max-width: 760px) 270px, 300px" width="720" height="1616" fetchpriority="high" alt="WeekScale dashboard showing weekly averages, trends, and reliability scores">
+            <img src="/static/img/weekscale-dashboard-720.webp?version={{.Version}}" srcset="/static/img/weekscale-dashboard-720.webp?version={{.Version}} 720w, /static/img/weekscale-dashboard-1080.webp?version={{.Version}} 1080w" data-android-src="/static/img/weekscale-dashboard-720.webp?version={{.Version}}" data-android-srcset="/static/img/weekscale-dashboard-720.webp?version={{.Version}} 720w, /static/img/weekscale-dashboard-1080.webp?version={{.Version}} 1080w" data-ios-src="/static/img/weekscale-ios-dashboard-720.webp?version={{.Version}}" data-ios-srcset="/static/img/weekscale-ios-dashboard-720.webp?version={{.Version}} 720w, /static/img/weekscale-ios-dashboard-1080.webp?version={{.Version}} 1080w" sizes="(max-width: 500px) 240px, (max-width: 760px) 270px, 300px" width="720" height="1616" fetchpriority="high" alt="WeekScale dashboard showing weekly averages, trends, and reliability scores">
         </div>
         <div class="trend-chip trend-chip-top"><span>Weekly change</span><strong>↓ 0.39 kg</strong></div>
         <div class="trend-chip trend-chip-bottom"><span>Reliability</span><strong>86%</strong></div>
@@ -112,7 +117,7 @@
         </div>
         <div class="graph-stage">
             <div class="phone phone-graph">
-                <img loading="lazy" src="/static/img/weekscale-trend-720.webp?version={{.Version}}" srcset="/static/img/weekscale-trend-720.webp?version={{.Version}} 720w, /static/img/weekscale-trend-1080.webp?version={{.Version}} 1080w" sizes="300px" width="720" height="1616" alt="WeekScale trend graph with daily weights and a weekly average line">
+                <img loading="lazy" src="/static/img/weekscale-trend-720.webp?version={{.Version}}" srcset="/static/img/weekscale-trend-720.webp?version={{.Version}} 720w, /static/img/weekscale-trend-1080.webp?version={{.Version}} 1080w" data-android-src="/static/img/weekscale-trend-720.webp?version={{.Version}}" data-android-srcset="/static/img/weekscale-trend-720.webp?version={{.Version}} 720w, /static/img/weekscale-trend-1080.webp?version={{.Version}} 1080w" data-ios-src="/static/img/weekscale-ios-trend-720.webp?version={{.Version}}" data-ios-srcset="/static/img/weekscale-ios-trend-720.webp?version={{.Version}} 720w, /static/img/weekscale-ios-trend-1080.webp?version={{.Version}} 1080w" sizes="300px" width="720" height="1616" alt="WeekScale trend graph with daily weights and a weekly average line">
             </div>
         </div>
     </div>
@@ -121,7 +126,7 @@
 <section class="section shell feature-showcase">
     <div class="showcase-visual">
         <div class="phone phone-entry">
-            <img loading="lazy" src="/static/img/weekscale-entry-720.webp?version={{.Version}}" srcset="/static/img/weekscale-entry-720.webp?version={{.Version}} 720w, /static/img/weekscale-entry-1080.webp?version={{.Version}} 1080w" sizes="290px" width="720" height="1616" alt="WeekScale dialog for quickly logging a weight">
+            <img loading="lazy" src="/static/img/weekscale-entry-720.webp?version={{.Version}}" srcset="/static/img/weekscale-entry-720.webp?version={{.Version}} 720w, /static/img/weekscale-entry-1080.webp?version={{.Version}} 1080w" data-android-src="/static/img/weekscale-entry-720.webp?version={{.Version}}" data-android-srcset="/static/img/weekscale-entry-720.webp?version={{.Version}} 720w, /static/img/weekscale-entry-1080.webp?version={{.Version}} 1080w" data-ios-src="/static/img/weekscale-ios-entry-720.webp?version={{.Version}}" data-ios-srcset="/static/img/weekscale-ios-entry-720.webp?version={{.Version}} 720w, /static/img/weekscale-ios-entry-1080.webp?version={{.Version}} 1080w" sizes="290px" width="720" height="1616" alt="WeekScale dialog for quickly logging a weight">
         </div>
     </div>
     <div class="showcase-copy">

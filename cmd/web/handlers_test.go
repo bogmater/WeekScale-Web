@@ -20,7 +20,12 @@ func TestHome(t *testing.T) {
 		assert.Equal(t, res.StatusCode, http.StatusOK)
 		assert.True(t, containsPageTag(t, res.Body, "home"))
 		assert.True(t, containsHTMLNode(t, res.Body, `.cf-turnstile[data-action="beta"][data-sitekey="test-site-key"]`))
-		assert.True(t, !strings.Contains(res.Body, "test-secret-key"))
+		assert.True(t, strings.Contains(res.Body, "test-secret-key") == false)
+		assert.True(t, containsHTMLNode(t, res.Body, `[class="platform-switcher"]`))
+		assert.True(t, strings.Contains(res.Body, "/static/js/platform-switcher.js"))
+		assert.True(t, strings.Contains(res.Body, `data-ios-src="/static/img/weekscale-ios-dashboard-720.webp`))
+		assert.True(t, strings.Contains(res.Body, "weekscale-ios-entry-1080.webp"))
+		assert.True(t, strings.Contains(res.Body, "weekscale-ios-trend-720.webp"))
 	})
 }
 

@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"strings"
 	"testing"
 
 	"bogmater/weekscale-web/internal/assert"
@@ -18,6 +19,17 @@ func TestRoutes(t *testing.T) {
 		assert.Equal(t, res.Header.Get("Content-Type"), "text/css; charset=utf-8")
 		assert.Equal(t, res.Header.Get("Cache-Control"), "public, max-age=31536000, immutable")
 		assert.True(t, len(res.Body) > 0)
+	})
+
+	t.Run("Serves the platform switcher script", func(t *testing.T) {
+		app := newTestApplication(t)
+
+		req := newTestRequest(t, http.MethodGet, "/static/js/platform-switcher.js")
+
+		res := send(t, req, app.routes())
+		assert.Equal(t, res.StatusCode, http.StatusOK)
+		assert.Equal(t, res.Header.Get("Cache-Control"), "public, max-age=31536000, immutable")
+		assert.True(t, strings.Contains(res.Body, "platform-switcher"))
 	})
 
 	t.Run("Compresses HTML when requested", func(t *testing.T) {
