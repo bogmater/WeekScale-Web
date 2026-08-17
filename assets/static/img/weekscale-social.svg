@@ -6,9 +6,10 @@
   </g>
   <circle cx="960" cy="295" r="220" fill="#8ED1C7" fill-opacity=".08"/>
   <text x="74" y="105" fill="#8ED1C7" font-family="Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="4">WEEKSCALE</text>
-  <text x="70" y="245" fill="#F5FAF9" font-family="Arial, sans-serif" font-size="68" font-weight="700" letter-spacing="-3">Your week</text>
-  <text x="70" y="325" fill="#8ED1C7" font-family="Georgia, serif" font-size="70" font-style="italic">is the unit.</text>
-  <text x="74" y="395" fill="#AEB9C7" font-family="Arial, sans-serif" font-size="25">Calendar-week averages. No rolling 7-day window.</text>
+  <text x="70" y="215" fill="#F5FAF9" font-family="Arial, sans-serif" font-size="58" font-weight="700" letter-spacing="-3">Doesn't want your data,</text>
+  <text x="70" y="285" fill="#8ED1C7" font-family="Georgia, serif" font-size="60" font-style="italic">your subscription,</text>
+  <text x="70" y="355" fill="#F5FAF9" font-family="Arial, sans-serif" font-size="58" font-weight="700" letter-spacing="-3">or your attention.</text>
+  <text x="74" y="420" fill="#AEB9C7" font-family="Arial, sans-serif" font-size="22">On Android, the app isn't even granted internet permission.</text>
   <g transform="translate(837 172) scale(.24)">
     <path fill="#172033" d="M224 0h576a224 224 0 0 1 224 224v576a224 224 0 0 1-224 224H224A224 224 0 0 1 0 800V224A224 224 0 0 1 224 0Z"/>
     <path fill="#F5FAF9" d="M95 299h120l143 359 81-126-13 126-61 149q-7 16-22 16h-14q-16 0-22-16L95 299Z"/>
@@ -20,7 +21,7 @@
   <g transform="translate(74 517)" font-family="Arial, sans-serif" font-size="18" font-weight="700">
     <rect width="190" height="45" rx="22.5" fill="#8ED1C7"/>
     <text x="95" y="29" fill="#101725" text-anchor="middle">NO SUBSCRIPTION</text>
-    <rect x="204" width="94" height="45" rx="22.5" fill="none" stroke="#8ED1C7" stroke-opacity=".5"/>
-    <text x="251" y="29" fill="#F5FAF9" text-anchor="middle">NO AI</text>
+    <rect x="204" width="132" height="45" rx="22.5" fill="none" stroke="#8ED1C7" stroke-opacity=".5"/>
+    <text x="270" y="29" fill="#F5FAF9" text-anchor="middle">NO INTERNET</text>
   </g>
 </svg>

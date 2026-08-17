@@ -25,7 +25,7 @@ func (app *application) robots(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) sitemap(w http.ResponseWriter, r *http.Request) {
-	paths := []string{"/", "/about", "/faq", "/private-weight-tracker", "/privacy", "/support", "/weekly-average-weight"}
+	paths := []string{"/", "/about", "/faq", "/happy-scale-alternative", "/libra-alternative-ios", "/offline-weight-tracker-no-account", "/private-weight-tracker", "/privacy", "/support", "/weekly-average-weight", "/weight-tracker-without-subscription"}
 	urls := make([]sitemapURL, 0, len(paths))
 	for _, path := range paths {
 		urls = append(urls, sitemapURL{Location: app.siteURL() + path})

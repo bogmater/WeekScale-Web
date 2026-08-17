@@ -1,0 +1,104 @@
+{{define "page:title"}}Weight Tracker Without Subscription: Pay Once, Use Forever | WeekScale{{end}}
+
+{{define "page:meta"}}
+<meta name="page" content="weight-tracker-without-subscription">
+<meta name="description" content="Most weight trackers now charge monthly or yearly. WeekScale is a one-time purchase — $6 USD or €5 EUR — with updates included and no recurring fee.">
+<meta property="og:title" content="Weight Tracker Without Subscription: Pay Once, Use Forever">
+<meta property="og:description" content="Why weight trackers moved to subscriptions, what you are really paying for, and how a one-time purchase compares.">
+<meta property="og:type" content="article">
+<meta name="twitter:title" content="Weight Tracker Without Subscription: Pay Once, Use Forever">
+<meta name="twitter:description" content="A look at subscription-free weight tracking and WeekScale's one-time price.">
+{{end}}
+
+{{define "page:main"}}
+<article class="guide" itemscope itemtype="https://schema.org/Article">
+    <meta itemprop="datePublished" content="2026-08-17">
+    <meta itemprop="dateModified" content="2026-08-17">
+    <meta itemprop="image" content="{{.SocialImageURL}}">
+    <span hidden itemprop="author publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="WeekScale"></span>
+
+    <header class="page-hero guide-hero shell">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="/">WeekScale</a><span aria-hidden="true">/</span><span>No-subscription tracker</span>
+        </nav>
+        <p class="eyebrow"><span></span> One honest price</p>
+        <h1 itemprop="headline">A weight tracker without a subscription.</h1>
+        <p itemprop="description">Many weight trackers have moved to monthly or yearly plans. WeekScale is built the opposite way: pay once, use it forever, and keep receiving updates. Here is how that choice works in practice.</p>
+    </header>
+
+    <div class="guide-layout shell">
+        <nav class="contents-nav guide-nav" aria-label="Article sections">
+            <span>In this guide</span>
+            <a href="#short-answer">Short answer</a>
+            <a href="#subscription-trend">Why subscriptions are everywhere</a>
+            <a href="#what-you-pay-for">What you are really paying for</a>
+            <a href="#one-time-price">WeekScale's one-time price</a>
+            <a href="#honest-tradeoffs">Honest tradeoffs</a>
+            <a href="#what-to-look-for">What to look for</a>
+        </nav>
+
+        <div class="guide-content" itemprop="articleBody">
+            <section class="guide-summary" id="short-answer">
+                <p class="guide-kicker">The short answer</p>
+                <p>WeekScale is a one-time purchase: $6 USD or &euro;5 EUR, once. There is no monthly plan, no yearly plan, no free tier with ads, and no paywall behind a subscription. Updates are included in the price.</p>
+            </section>
+
+            <section class="prose-section" id="subscription-trend">
+                <h2>Why subscriptions are everywhere in weight tracking</h2>
+                <p>Weight trackers have largely moved to subscriptions, and the pattern is easy to see: an app is free to start, then the genuinely useful features &mdash; unlimited history, trend analysis, exports, removing ads &mdash; sit behind a recurring plan. Well-known examples follow this model, with monthly or yearly tiers.</p>
+                <p>A subscription is not automatically bad. It gives a developer predictable income and can fund ongoing work. But it also means you pay for the tracker as long as you want to use it, and the cost compounds year after year for what is, in the end, a small tool.</p>
+            </section>
+
+            <section class="prose-section" id="what-you-pay-for">
+                <h2>What a subscription is really paying for</h2>
+                <p>In most cases, a subscription funds two things: continued development, and the operating cost of services such as cloud sync, accounts, and analytics. Both are real costs.</p>
+                <p>WeekScale sidesteps them by design. There is no account system, no WeekScale-operated cloud, no analytics, and no advertising, so there is little ongoing server cost to amortize. The Android app is not even granted internet permission, and the iOS app makes no direct network requests.</p>
+                <div class="guide-principle">
+                    <strong>No subscription, because there is almost nothing to pay for monthly.</strong>
+                    <span>A weight tracker that stays on your device has no server bills to pass along.</span>
+                </div>
+            </section>
+
+            <section class="prose-section" id="one-time-price">
+                <h2>WeekScale's one-time price</h2>
+                <p>WeekScale costs $6 USD in the United States and &euro;5 EUR in Europe. You pay once, use it as long as you like, and receive updates without a recurring fee.</p>
+                <div class="detail-list">
+                    <div><strong>Pay once</strong><span>$6 USD / &euro;5 EUR</span></div>
+                    <div><strong>Keep updates</strong><span>No recurring fee</span></div>
+                    <div><strong>No ads or paywall</strong><span>Full app, no free-tier tricks</span></div>
+                </div>
+            </section>
+
+            <section class="prose-section" id="honest-tradeoffs">
+                <h2>The honest tradeoffs</h2>
+                <ul>
+                    <li><strong>WeekScale is pre-release and coming soon.</strong> A subscription app that has shipped for years has a track record; WeekScale is newer and asks for your trust earlier.</li>
+                    <li><strong>It is built by one person.</strong> That keeps scope honest, but it also means features arrive at a solo pace.</li>
+                    <li><strong>The feature set is deliberately small.</strong> No predictions, no BMI, no goal weight &mdash; by design, not by accident.</li>
+                    <li><strong>Backups are your responsibility.</strong> With no account or cloud, restoring data depends on your device backups and CSV exports.</li>
+                </ul>
+                <p>A one-time price is not automatically better than a subscription. It is a different deal, and it is the deal WeekScale makes.</p>
+            </section>
+
+            <section class="prose-section" id="what-to-look-for">
+                <h2>What to look for in a no-subscription tracker</h2>
+                <ol class="privacy-checklist">
+                    <li><strong>Is it truly pay-once?</strong><span>Check whether useful features hide behind recurring in-app purchases.</span></li>
+                    <li><strong>Are there ads?</strong><span>A "free" tracker may still sell your attention.</span></li>
+                    <li><strong>Where does the data go?</strong><span>Prefer apps whose working database stays on the device.</span></li>
+                    <li><strong>Can you export everything?</strong><span>CSV export protects you against lock-in and lost data.</span></li>
+                    <li><strong>Who pays for the server?</strong><span>If there is no server, a subscription has less to justify itself.</span></li>
+                </ol>
+                <p>For the deeper privacy questions, the <a class="inline-link" href="/private-weight-tracker">local-first guide</a> and the <a class="inline-link" href="/privacy">privacy notice</a> give the full picture.</p>
+            </section>
+
+            <section class="guide-cta">
+                <p class="eyebrow"><span></span> Compare the other angles</p>
+                <h2>Your week is the unit.</h2>
+                <p>Also compare <a href="/happy-scale-alternative">Happy Scale</a> and <a href="/libra-alternative-ios">Libra on iOS</a>, or read about <a href="/offline-weight-tracker-no-account">offline trackers with no account</a>.</p>
+                <a class="button button-primary" href="/#beta">Join the WeekScale beta</a>
+            </section>
+        </div>
+    </div>
+</article>
+{{end}}

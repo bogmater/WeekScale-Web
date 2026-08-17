@@ -11,7 +11,11 @@ The site is a server-rendered Go application. HTML templates, CSS, screenshots, 
 - `/` - marketing landing page
 - `/about` - why WeekScale exists and where it is headed
 - `/faq` - product and privacy questions
+- `/happy-scale-alternative` - comparison with Happy Scale
+- `/libra-alternative-ios` - comparison with Libra on iOS
+- `/offline-weight-tracker-no-account` - guide to offline, no-account weight tracking
 - `/weekly-average-weight` - guide to calendar-week averages and rolling averages
+- `/weight-tracker-without-subscription` - guide to one-time-purchase weight tracking
 - `/private-weight-tracker` - guide to local-first weight tracking and data privacy
 - `/privacy` - iOS, Android, and website privacy details
 - `/support` - spam-resistant support contact form

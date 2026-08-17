@@ -165,6 +165,42 @@ func (app *application) privateWeightTracker(w http.ResponseWriter, r *http.Requ
 	}
 }
 
+func (app *application) happyScaleAlternative(w http.ResponseWriter, r *http.Request) {
+	data := app.newTemplateData(r)
+
+	err := response.Page(w, http.StatusOK, data, "pages/happy-scale-alternative.tmpl")
+	if err != nil {
+		app.serverError(w, r, err)
+	}
+}
+
+func (app *application) libraAlternativeIOS(w http.ResponseWriter, r *http.Request) {
+	data := app.newTemplateData(r)
+
+	err := response.Page(w, http.StatusOK, data, "pages/libra-alternative-ios.tmpl")
+	if err != nil {
+		app.serverError(w, r, err)
+	}
+}
+
+func (app *application) offlineWeightTrackerNoAccount(w http.ResponseWriter, r *http.Request) {
+	data := app.newTemplateData(r)
+
+	err := response.Page(w, http.StatusOK, data, "pages/offline-weight-tracker-no-account.tmpl")
+	if err != nil {
+		app.serverError(w, r, err)
+	}
+}
+
+func (app *application) weightTrackerWithoutSubscription(w http.ResponseWriter, r *http.Request) {
+	data := app.newTemplateData(r)
+
+	err := response.Page(w, http.StatusOK, data, "pages/weight-tracker-without-subscription.tmpl")
+	if err != nil {
+		app.serverError(w, r, err)
+	}
+}
+
 func (app *application) weeklyAverageWeight(w http.ResponseWriter, r *http.Request) {
 	data := app.newTemplateData(r)
 

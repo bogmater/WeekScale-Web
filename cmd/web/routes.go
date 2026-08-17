@@ -27,7 +27,10 @@ func (app *application) routes() http.Handler {
 	mux.Get("/about", app.about)
 	mux.Post("/beta", app.submitBeta)
 	mux.Get("/faq", app.faq)
+	mux.Get("/happy-scale-alternative", app.happyScaleAlternative)
 	mux.Get("/healthz", app.healthcheck)
+	mux.Get("/libra-alternative-ios", app.libraAlternativeIOS)
+	mux.Get("/offline-weight-tracker-no-account", app.offlineWeightTrackerNoAccount)
 	mux.Get("/private-weight-tracker", app.privateWeightTracker)
 	mux.Get("/privacy", app.privacy)
 	mux.Get("/robots.txt", app.robots)
@@ -35,6 +38,7 @@ func (app *application) routes() http.Handler {
 	mux.Get("/support", app.support)
 	mux.Post("/support", app.submitSupport)
 	mux.Get("/weekly-average-weight", app.weeklyAverageWeight)
+	mux.Get("/weight-tracker-without-subscription", app.weightTrackerWithoutSubscription)
 
 	return mux
 }

@@ -28,6 +28,10 @@ func TestHome(t *testing.T) {
 		assert.True(t, strings.Contains(res.Body, "weekscale-ios-trend-720.webp"))
 		assert.True(t, strings.Contains(res.Body, "I built the tracker I wanted to use."))
 		assert.True(t, strings.Contains(res.Body, "A small app, with a deliberate plan."))
+		assert.True(t, strings.Contains(res.Body, "A weight tracker that doesn't want your data"))
+		assert.True(t, strings.Contains(res.Body, "On Android, WeekScale isn't even granted internet permission."))
+		assert.True(t, strings.Contains(res.Body, "Rolling averages never settle."))
+		assert.True(t, strings.Contains(res.Body, `href="/weekly-average-weight"`))
 		assert.True(t, strings.Contains(res.Body, `href="/about"`))
 	})
 }
@@ -42,6 +46,8 @@ func TestAboutPage(t *testing.T) {
 		assert.True(t, containsPageTag(t, res.Body, "about"))
 		assert.True(t, strings.Contains(res.Body, "I built the tracker I wanted to use."))
 		assert.True(t, strings.Contains(res.Body, "No data sharing"))
+		assert.True(t, strings.Contains(res.Body, "The only thing WeekScale rewards"))
+		assert.True(t, strings.Contains(res.Body, "green card"))
 		assert.True(t, strings.Contains(res.Body, "UI-focused refinements"))
 		assert.True(t, strings.Contains(res.Body, "Apple Health on iOS"))
 		assert.True(t, strings.Contains(res.Body, "Health Connect on Android"))
@@ -70,10 +76,14 @@ func TestContentPages(t *testing.T) {
 	}{
 		{name: "FAQ", path: "/faq", pageTag: "faq"},
 		{name: "about", path: "/about", pageTag: "about"},
+		{name: "happy scale alternative", path: "/happy-scale-alternative", pageTag: "happy-scale-alternative"},
+		{name: "libra alternative ios", path: "/libra-alternative-ios", pageTag: "libra-alternative-ios"},
+		{name: "offline weight tracker no account", path: "/offline-weight-tracker-no-account", pageTag: "offline-weight-tracker-no-account"},
 		{name: "private weight tracker", path: "/private-weight-tracker", pageTag: "private-weight-tracker"},
 		{name: "privacy", path: "/privacy", pageTag: "privacy"},
 		{name: "support", path: "/support", pageTag: "support"},
 		{name: "weekly average weight", path: "/weekly-average-weight", pageTag: "weekly-average-weight"},
+		{name: "weight tracker without subscription", path: "/weight-tracker-without-subscription", pageTag: "weight-tracker-without-subscription"},
 	}
 
 	for _, tt := range tests {
