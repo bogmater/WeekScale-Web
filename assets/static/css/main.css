@@ -1289,6 +1289,10 @@ a.button-secondary:hover {
     padding-block: 80px 130px;
 }
 
+.guide-content {
+    min-width: 0;
+}
+
 .guide-summary {
     scroll-margin-top: 30px;
     margin-bottom: 65px;
