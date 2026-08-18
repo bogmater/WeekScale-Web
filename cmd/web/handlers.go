@@ -210,6 +210,15 @@ func (app *application) weeklyAverageWeight(w http.ResponseWriter, r *http.Reque
 	}
 }
 
+func (app *application) whyCalendarWeeks(w http.ResponseWriter, r *http.Request) {
+	data := app.newTemplateData(r)
+
+	err := response.Page(w, http.StatusOK, data, "pages/why-calendar-weeks.tmpl")
+	if err != nil {
+		app.serverError(w, r, err)
+	}
+}
+
 func (app *application) support(w http.ResponseWriter, r *http.Request) {
 	data := app.newTemplateData(r)
 	data["Form"] = supportForm{}

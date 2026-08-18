@@ -101,6 +101,7 @@ func TestSitemap(t *testing.T) {
 		"https://www.weekscale.net/support",
 		"https://www.weekscale.net/weekly-average-weight",
 		"https://www.weekscale.net/weight-tracker-without-subscription",
+		"https://www.weekscale.net/why-calendar-weeks",
 	} {
 		assert.True(t, strings.Contains(res.Body, "<loc>"+location+"</loc>"))
 	}

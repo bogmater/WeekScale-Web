@@ -39,6 +39,7 @@ func (app *application) routes() http.Handler {
 	mux.Post("/support", app.submitSupport)
 	mux.Get("/weekly-average-weight", app.weeklyAverageWeight)
 	mux.Get("/weight-tracker-without-subscription", app.weightTrackerWithoutSubscription)
+	mux.Get("/why-calendar-weeks", app.whyCalendarWeeks)
 
 	return mux
 }
