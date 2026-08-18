@@ -1,0 +1,130 @@
+{{define "page:title"}}Why I Use Calendar Weeks Instead of a Rolling 7-Day Average | WeekScale{{end}}
+
+{{define "page:meta"}}
+<meta name="page" content="why-calendar-weeks">
+<meta name="description" content="The full essay on why calendar weeks beat rolling 7-day averages for weight tracking. A rolling window never ends, so it never becomes a week you can set against another. A calendar week does.">
+<meta property="og:title" content="Why I Use Calendar Weeks Instead of a Rolling 7-Day Average">
+<meta property="og:description" content="Weigh every day. Average the week. Compare it with the week before. It is the standard advice, and almost no tracker implements it. This is why WeekScale is built around the calendar week.">
+<meta property="og:type" content="article">
+<meta name="twitter:title" content="Why I Use Calendar Weeks Instead of a Rolling 7-Day Average">
+<meta name="twitter:description" content="A rolling 7-day average never finishes a week, because it never stays still long enough to have one. A calendar week ends, stays ended, and can be compared.">
+{{end}}
+
+{{define "page:main"}}
+<article class="guide" itemscope itemtype="https://schema.org/Article">
+    <meta itemprop="datePublished" content="2026-08-17">
+    <meta itemprop="dateModified" content="2026-08-17">
+    <meta itemprop="image" content="{{.SocialImageURL}}">
+    <span hidden itemprop="author publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="WeekScale"></span>
+
+    <header class="page-hero guide-hero shell">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="/">WeekScale</a><span aria-hidden="true">/</span><span>Calendar weeks vs rolling averages</span>
+        </nav>
+        <p class="eyebrow"><span></span> The argument, in full</p>
+        <h1 itemprop="headline">Why I use calendar weeks instead of a rolling 7-day average</h1>
+        <p itemprop="description">A rolling 7-day average never finishes a week, because it never stays still long enough to have one. This is the essay on why WeekScale is built around the calendar week instead.</p>
+    </header>
+
+    <div class="guide-layout shell">
+        <nav class="contents-nav guide-nav" aria-label="Article sections">
+            <span>In this essay</span>
+            <a href="#short-answer">The short answer</a>
+            <a href="#advice">The advice I kept hearing</a>
+            <a href="#common-fix">The common fix, and its quiet flaw</a>
+            <a href="#calendar-weeks">Calendar weeks</a>
+            <a href="#real-question">The real question</a>
+            <a href="#completeness">Completeness</a>
+            <a href="#counterargument">The fair counterargument</a>
+            <a href="#spreadsheet">The spreadsheet honesty</a>
+            <a href="#moving-average">Why not just use a moving average?</a>
+            <a href="#your-week">Your week is the unit</a>
+        </nav>
+
+        <div class="guide-content" itemprop="articleBody">
+            <section class="guide-summary" id="short-answer">
+                <p class="guide-kicker">The short answer</p>
+                <p>A moving average is a good way to smooth noise, but a bad way to compare two periods, because the period never stays still. You cannot compare two weeks that never end. A calendar week ends, stays ended, and can be compared with the week before it. That is the whole point.</p>
+            </section>
+
+            <section class="prose-section" id="advice">
+                <h2>The advice I kept hearing</h2>
+                <p>Every morning starts the same way for a lot of us: feet on the scale, a number, a small ceremony of judgment. Up half a kilo? Down a hundred grams? The daily ritual is honest. It is one reading, taken at one moment, under one set of conditions. Water, salt, the meal from last night, how late you slept, what you are wearing. The scale does not care about any of that. It reports total body mass at that instant, and that instant is noisy.</p>
+                <p>One reading says almost nothing. So the standard fix is to take a few readings and combine them. And that is where the trouble starts, because there are two very different ways to combine them.</p>
+                <p>When I was working through my own weight issues, I heard the same protocol from every credible source that was not trying to sell me something: weigh in every day. Ignore the emotional impact of the number. Average the week. Compare it with the same thing you did last week. It is the closest thing weight loss has to an objective method, and it held up in a way that the motivational stuff never did.</p>
+                <p>The protocol is beautifully plain. One number a day, one average a week, one comparison against the week before. The weekly view was calmer than the daily one, because a whole week is harder to spook than a single morning.</p>
+                <p>The more I looked around, the more amazed I was. Given how standard this instruction is, almost no weight trackers actually implement it. The ones that come close tend to bury it under subscriptions, ads, accounts, streaks, or a moving window that quietly changes the answer every day.</p>
+            </section>
+
+            <section class="prose-section" id="common-fix">
+                <h2>The common fix, and its quiet flaw</h2>
+                <p>Most trackers implement the &ldquo;combine the readings&rdquo; step as a rolling 7-day average. Take today and the six days before it, average them, call that your trend. Tomorrow, drop the oldest day, add the new one, average again. The math is unobjectionable. The flaw is the window.</p>
+                <p>The window moves. Every morning it slides forward one day, and the number you were given yesterday gets quietly rewritten today. Nothing ever finishes. You cannot point at &ldquo;last week,&rdquo; because the window has already slid past it. And because each new average shares six of seven readings with the one before it, the line is smooth almost by construction. It mostly re-averages the same data, dressed in a new date.</p>
+                <p>That is the part people do not usually notice. A rolling 7-day average never finishes a week, because it never stays still long enough to have one.</p>
+                <div class="guide-principle">
+                    <strong>A rolling 7-day average never finishes a week.</strong>
+                    <span>It never stays still long enough to have one.</span>
+                </div>
+            </section>
+
+            <section class="prose-section" id="calendar-weeks">
+                <h2>Calendar weeks</h2>
+                <p>WeekScale is built around the other way: the calendar week. Monday to Sunday, or Sunday to Saturday, whichever you prefer. A fixed seven-day period with a beginning, a middle, and an end. You record your weigh-ins. When the last day arrives, the week is done, and its average is a number that will never change again.</p>
+                <p>That permanence is the whole trick. A finished week stays finished. It sits there, comparable to every other finished week in your history, because they all have the same shape: seven consecutive days, fully elapsed. You can hold last week in your head. You can compare it with this week. You cannot do that with a window that is always six-sevenths the same as the last window.</p>
+            </section>
+
+            <section class="prose-section" id="real-question">
+                <h2>The real question</h2>
+                <p>I think the disagreement comes down to what question you are actually asking.</p>
+                <ul>
+                    <li>A daily reading answers: what does the scale say right now?</li>
+                    <li>A rolling average answers: what is the smoothed level around today?</li>
+                    <li>A calendar week answers: how did this week compare with the one before it?</li>
+                </ul>
+                <p>The third question is the one I was actually trying to answer. Not &ldquo;where is today's smoothed line,&rdquo; but &ldquo;am I doing better this week than last week.&rdquo; A rolling average cannot answer that, not really. It cannot hand you two finished, non-overlapping periods and ask you to compare them, because it never produces one. A calendar week does, every single time.</p>
+            </section>
+
+            <section class="prose-section" id="completeness">
+                <h2>Completeness</h2>
+                <p>A fixed week gives you something else a moving window cannot: a way to grade your own consistency. A rolling window has no completed period, so there is nothing to grade. But a calendar week, once it ends, has a clear question attached: how many of its seven days did you actually show up?</p>
+                <p>WeekScale turns that into a visible answer. A week is reliable when it has five or more weigh-ins. That is the app's green card, and the only thing it positively rewards. Not a goal weight, not a loss streak, not a badge for losing. Just: did you show up enough that this week's number is worth trusting? That is a question you can only ask about something that has an end.</p>
+            </section>
+
+            <section class="prose-section" id="counterargument">
+                <h2>The fair counterargument</h2>
+                <p>Let me be fair, because this is the part I want to be honest about. A rolling average is a legitimate tool. It is what wearables use to smooth step data and heart rate. It is a fine technique for a live dashboard, where you want the number to follow today. When I say rolling averages are the wrong choice for this job, I do not mean the math is bad. I mean it answers a different question than the one a week-based tracker should answer.</p>
+                <p>There are excellent apps built around smoothing, and they are good at what they do. If you want a continuously smoothed trend line that updates every day, a rolling average is genuinely the right tool, and you should use it. This essay is not a claim that the technique is broken. It is a claim that week-to-week comparison is a different job, and that for that job, the calendar week is the natural unit.</p>
+            </section>
+
+            <section class="prose-section" id="spreadsheet">
+                <h2>The spreadsheet honesty</h2>
+                <p>None of this is hard math. You could do it in a spreadsheet: a column for dates, a column for weights, a formula for the weekly average, a cell comparing this week with last week. It works. I have done it.</p>
+                <p>So let me be honest about what the app actually adds. It is not clever arithmetic. It is the difference between a habit and a chore. Opening a spreadsheet every morning is enough friction to kill the habit. And a spreadsheet full of your weight is a file you have to keep safe and remember to update, which is more friction, all of it silent. WeekScale is that same weekly average, made calm, kept on your phone, and left alone. No account, no ads, no subscription, and on Android the app is not even granted internet permission.</p>
+            </section>
+
+            <section class="prose-section" id="moving-average">
+                <h2>Why not just use a moving average?</h2>
+                <p>It is the most common question I get, and the answer is short:</p>
+                <div class="guide-principle">
+                    <strong>A moving average is a good way to smooth noise, but a bad way to compare two periods.</strong>
+                    <span>Because the period never stays still. You cannot compare two weeks that never end. A calendar week ends. That is the whole point.</span>
+                </div>
+                <p>For the practical details of how weekly averages are calculated and how the reliability score works, see the <a class="inline-link" href="/weekly-average-weight">weekly averages guide</a>.</p>
+            </section>
+
+            <section class="prose-section" id="your-week">
+                <h2>Your week is the unit</h2>
+                <p>That is why WeekScale exists. I wanted a tracker that treated the week as the unit. One that compared finished weeks instead of re-averaging the same days over and over, and that rewarded showing up rather than the number on the scale. When I could not find one that did it without subscriptions and ads, I built it.</p>
+                <p>If you have ever caught yourself staring at a morning reading and trying to decide what it means, the calendar week is a steadier place to look from. One week ends. Another begins. The answer stays put.</p>
+            </section>
+
+            <section class="guide-cta">
+                <p class="eyebrow"><span></span> Calendar weeks by design</p>
+                <h2>Your week is the unit.</h2>
+                <p>Log daily when it is useful. Compare weekly averages when you want the broader direction.</p>
+                <a class="button button-primary" href="/#beta">Join the WeekScale beta</a>
+            </section>
+        </div>
+    </div>
+</article>
+{{end}}

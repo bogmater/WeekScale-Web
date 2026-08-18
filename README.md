@@ -16,6 +16,7 @@ The site is a server-rendered Go application. HTML templates, CSS, screenshots, 
 - `/offline-weight-tracker-no-account` - guide to offline, no-account weight tracking
 - `/weekly-average-weight` - guide to calendar-week averages and rolling averages
 - `/weight-tracker-without-subscription` - guide to one-time-purchase weight tracking
+- `/why-calendar-weeks` - essay on why calendar weeks beat rolling 7-day averages
 - `/private-weight-tracker` - guide to local-first weight tracking and data privacy
 - `/privacy` - iOS, Android, and website privacy details
 - `/support` - spam-resistant support contact form

@@ -31,7 +31,7 @@ func TestHome(t *testing.T) {
 		assert.True(t, strings.Contains(res.Body, "A weight tracker that doesn't want your data"))
 		assert.True(t, strings.Contains(res.Body, "On Android, WeekScale isn't even granted internet permission."))
 		assert.True(t, strings.Contains(res.Body, "Rolling averages never settle."))
-		assert.True(t, strings.Contains(res.Body, `href="/weekly-average-weight"`))
+		assert.True(t, strings.Contains(res.Body, `href="/why-calendar-weeks"`))
 		assert.True(t, strings.Contains(res.Body, `href="/about"`))
 	})
 }
@@ -84,6 +84,7 @@ func TestContentPages(t *testing.T) {
 		{name: "support", path: "/support", pageTag: "support"},
 		{name: "weekly average weight", path: "/weekly-average-weight", pageTag: "weekly-average-weight"},
 		{name: "weight tracker without subscription", path: "/weight-tracker-without-subscription", pageTag: "weight-tracker-without-subscription"},
+		{name: "why calendar weeks", path: "/why-calendar-weeks", pageTag: "why-calendar-weeks"},
 	}
 
 	for _, tt := range tests {
