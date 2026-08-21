@@ -30,7 +30,9 @@ func (app *application) routes() http.Handler {
 	mux.Get("/happy-scale-alternative", app.happyScaleAlternative)
 	mux.Get("/healthz", app.healthcheck)
 	mux.Get("/libra-alternative-ios", app.libraAlternativeIOS)
-	mux.Get("/offline-weight-tracker-no-account", app.offlineWeightTrackerNoAccount)
+	mux.Get("/offline-weight-tracker-no-account", func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, "/private-weight-tracker", http.StatusMovedPermanently)
+	})
 	mux.Get("/private-weight-tracker", app.privateWeightTracker)
 	mux.Get("/privacy", app.privacy)
 	mux.Get("/robots.txt", app.robots)

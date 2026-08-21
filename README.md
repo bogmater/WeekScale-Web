@@ -13,8 +13,8 @@ The site is a server-rendered Go application. HTML templates, CSS, screenshots, 
 - `/faq` - product and privacy questions
 - `/happy-scale-alternative` - comparison with Happy Scale
 - `/libra-alternative-ios` - comparison with Libra on iOS
-- `/offline-weight-tracker-no-account` - guide to offline, no-account weight tracking
-- `/weekly-average-weight` - guide to calendar-week averages and rolling averages
+- `/offline-weight-tracker-no-account` - permanently redirects to `/private-weight-tracker`
+- `/weekly-average-weight` - guide to calculating calendar-week averages and Reliability Scores
 - `/weight-tracker-without-subscription` - guide to one-time-purchase weight tracking
 - `/why-calendar-weeks` - essay on why calendar weeks beat rolling 7-day averages
 - `/private-weight-tracker` - guide to local-first weight tracking and data privacy

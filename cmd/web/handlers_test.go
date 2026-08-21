@@ -8,6 +8,8 @@ import (
 	"time"
 
 	"bogmater/weekscale-web/internal/assert"
+
+	"golang.org/x/net/html"
 )
 
 func TestHome(t *testing.T) {
@@ -30,7 +32,8 @@ func TestHome(t *testing.T) {
 		assert.True(t, strings.Contains(res.Body, "A small app, with a deliberate plan."))
 		assert.True(t, strings.Contains(res.Body, "A weight tracker that doesn't want your data"))
 		assert.True(t, strings.Contains(res.Body, "On Android, WeekScale isn't even granted internet permission."))
-		assert.True(t, strings.Contains(res.Body, "Rolling averages never settle."))
+		assert.True(t, strings.Contains(res.Body, "A finished week stays finished."))
+		assert.True(t, strings.Contains(res.Body, "WeekScale will never have a goal weight."))
 		assert.True(t, strings.Contains(res.Body, `href="/why-calendar-weeks"`))
 		assert.True(t, strings.Contains(res.Body, `href="/about"`))
 	})
@@ -78,7 +81,6 @@ func TestContentPages(t *testing.T) {
 		{name: "about", path: "/about", pageTag: "about"},
 		{name: "happy scale alternative", path: "/happy-scale-alternative", pageTag: "happy-scale-alternative"},
 		{name: "libra alternative ios", path: "/libra-alternative-ios", pageTag: "libra-alternative-ios"},
-		{name: "offline weight tracker no account", path: "/offline-weight-tracker-no-account", pageTag: "offline-weight-tracker-no-account"},
 		{name: "private weight tracker", path: "/private-weight-tracker", pageTag: "private-weight-tracker"},
 		{name: "privacy", path: "/privacy", pageTag: "privacy"},
 		{name: "support", path: "/support", pageTag: "support"},
@@ -102,6 +104,57 @@ func TestContentPages(t *testing.T) {
 				assert.True(t, containsHTMLNode(t, res.Body, `.cf-turnstile[data-action="support"][data-sitekey="test-site-key"]`))
 			}
 		})
+	}
+}
+
+func TestOfflineWeightTrackerRedirect(t *testing.T) {
+	app := newTestApplication(t)
+	req := newTestRequest(t, http.MethodGet, "/offline-weight-tracker-no-account")
+
+	res := send(t, req, app.routes())
+
+	assert.Equal(t, res.StatusCode, http.StatusMovedPermanently)
+	assert.Equal(t, res.Header.Get("Location"), "/private-weight-tracker")
+}
+
+func TestInternalLinksResolveWithoutRedirects(t *testing.T) {
+	app := newTestApplication(t)
+	handler := app.routes()
+	paths := []string{"/", "/about", "/faq", "/happy-scale-alternative", "/libra-alternative-ios", "/private-weight-tracker", "/privacy", "/support", "/weekly-average-weight", "/weight-tracker-without-subscription", "/why-calendar-weeks"}
+
+	for _, path := range paths {
+		res := send(t, newTestRequest(t, http.MethodGet, path), handler)
+		doc, err := html.Parse(strings.NewReader(res.Body))
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		var visit func(*html.Node)
+		visit = func(node *html.Node) {
+			if node.Type == html.ElementNode && node.Data == "a" {
+				for _, attr := range node.Attr {
+					if attr.Key != "href" || !strings.HasPrefix(attr.Val, "/") || strings.HasPrefix(attr.Val, "//") {
+						continue
+					}
+
+					link, err := url.Parse(attr.Val)
+					if err != nil {
+						t.Errorf("%s contains invalid internal link %q: %v", path, attr.Val, err)
+						continue
+					}
+					linkedRes := send(t, newTestRequest(t, http.MethodGet, link.Path), handler)
+					if linkedRes.StatusCode >= http.StatusMultipleChoices && linkedRes.StatusCode < http.StatusBadRequest {
+						t.Errorf("%s links to redirect %s", path, attr.Val)
+					} else if linkedRes.StatusCode == http.StatusNotFound {
+						t.Errorf("%s links to missing page %s", path, attr.Val)
+					}
+				}
+			}
+			for child := node.FirstChild; child != nil; child = child.NextSibling {
+				visit(child)
+			}
+		}
+		visit(doc)
 	}
 }
 

@@ -183,15 +183,6 @@ func (app *application) libraAlternativeIOS(w http.ResponseWriter, r *http.Reque
 	}
 }
 
-func (app *application) offlineWeightTrackerNoAccount(w http.ResponseWriter, r *http.Request) {
-	data := app.newTemplateData(r)
-
-	err := response.Page(w, http.StatusOK, data, "pages/offline-weight-tracker-no-account.tmpl")
-	if err != nil {
-		app.serverError(w, r, err)
-	}
-}
-
 func (app *application) weightTrackerWithoutSubscription(w http.ResponseWriter, r *http.Request) {
 	data := app.newTemplateData(r)
 

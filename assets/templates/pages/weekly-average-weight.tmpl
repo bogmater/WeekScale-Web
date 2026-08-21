@@ -1,19 +1,19 @@
-{{define "page:title"}}Why Calendar Weeks Beat Rolling 7-Day Averages | WeekScale{{end}}
+{{define "page:title"}}How WeekScale Calculates Your Weekly Average | WeekScale{{end}}
 
 {{define "page:meta"}}
 <meta name="page" content="weekly-average-weight">
-<meta name="description" content="A mildly contrarian case: rolling 7-day averages are a legitimate method, but the wrong tool for comparing weeks. Here is why calendar weeks win.">
-<meta property="og:title" content="Why Calendar Weeks Beat Rolling 7-Day Averages">
-<meta property="og:description" content="A rolling 7-day average never finishes: the window moves every morning, so yesterday's answer gets rewritten. Calendar weeks end, stay ended, and compare. Here is the argument.">
+<meta name="description" content="How WeekScale calculates weekly average weight, handles missing days, shows Reliability Scores, and helps make readings more comparable.">
+<meta property="og:title" content="How WeekScale Calculates Your Weekly Average">
+<meta property="og:description" content="How weekly averages are calculated, how missing days affect them, and what the Reliability Score means.">
 <meta property="og:type" content="article">
-<meta name="twitter:title" content="Why Calendar Weeks Beat Rolling 7-Day Averages">
-<meta name="twitter:description" content="The argument for calendar-week averages over rolling 7-day windows.">
+<meta name="twitter:title" content="How WeekScale Calculates Your Weekly Average">
+<meta name="twitter:description" content="How weekly averages are calculated, how missing days affect them, and what the Reliability Score means.">
 {{end}}
 
 {{define "page:main"}}
 <article class="guide" itemscope itemtype="https://schema.org/Article">
     <meta itemprop="datePublished" content="2026-08-16">
-    <meta itemprop="dateModified" content="2026-08-16">
+    <meta itemprop="dateModified" content="2026-08-21">
     <meta itemprop="image" content="{{.SocialImageURL}}">
     <span hidden itemprop="author publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="WeekScale"></span>
 
@@ -22,27 +22,20 @@
             <a href="/">WeekScale</a><span aria-hidden="true">/</span><span>Weekly average weight</span>
         </nav>
         <p class="eyebrow"><span></span> Understanding the number</p>
-        <h1 itemprop="headline">Why calendar weeks beat rolling 7-day averages</h1>
-        <p itemprop="description">A rolling 7-day average never finishes: the window moves every morning, so yesterday's answer keeps getting rewritten. A calendar week ends, stays ended, and can be compared. That is the argument for building WeekScale this way.</p>
+        <h1 itemprop="headline">How WeekScale calculates your weekly average</h1>
+        <p itemprop="description">How WeekScale turns daily readings into a weekly average, shows how complete the week is, and keeps the result useful in the context of normal day-to-day changes.</p>
     </header>
 
     <div class="guide-layout shell">
         <nav class="contents-nav guide-nav" aria-label="Article sections">
             <span>In this guide</span>
-            <a href="#short-answer">Short answer</a>
             <a href="#daily-changes">Daily changes</a>
             <a href="#calculation">The calculation</a>
-            <a href="#calendar-vs-rolling">Calendar vs rolling</a>
             <a href="#reliability">Reliable averages</a>
             <a href="#consistent-weighing">Consistency</a>
         </nav>
 
         <div class="guide-content" itemprop="articleBody">
-            <section class="guide-summary" id="short-answer">
-                <p class="guide-kicker">The short answer</p>
-                <p>The short version: a rolling 7-day average is a legitimate smoothing method, but it is the wrong tool for comparing weeks. Its window moves every day, so the number never settles and never directly matches a previous week. A calendar week has a clear end &mdash; and a finished week is the only thing you can fairly compare with another week. For the full essay, <a class="inline-link" href="/why-calendar-weeks">read why calendar weeks instead of a rolling 7-day average</a>.</p>
-            </section>
-
             <section class="prose-section" id="daily-changes">
                 <h2>Why body weight changes from day to day</h2>
                 <p>A scale measures total body mass at that moment. It does not separately identify a change in body fat. Fluid intake and loss, food and drink still being digested, carbohydrate stores, sodium intake, clothing, and the time of measurement can all affect an individual reading.</p>
@@ -62,29 +55,7 @@
                     <p class="calculation-result"><span>Weekly average</span><strong>80.14 kg</strong></p>
                 </div>
                 <p>WeekScale also shows the minimum, maximum, date range, number of entries, and change from the most recent earlier week that contains data.</p>
-            </section>
-
-            <section class="prose-section" id="calendar-vs-rolling">
-                <h2>Calendar week versus rolling 7-day average</h2>
-                <p>Both methods combine multiple readings, but they answer different questions.</p>
-                <div class="comparison-table-wrap">
-                    <table class="comparison-table">
-                        <thead>
-                            <tr><th scope="col">Calendar-week average</th><th scope="col">Rolling 7-day average</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Uses a fixed Monday&ndash;Sunday or Sunday&ndash;Saturday period.</td><td>Uses today and the six preceding days.</td></tr>
-                            <tr><td>A completed week no longer changes.</td><td>The window changes every day.</td></tr>
-                            <tr><td>Compares distinct, non-overlapping periods.</td><td>Adjacent values usually share six of seven readings.</td></tr>
-                            <tr><td>Answers: &ldquo;How did this week compare with another week?&rdquo;</td><td>Answers: &ldquo;What is the smoothed level around today?&rdquo;</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <p>A rolling average is a legitimate smoothing method &mdash; for a live dashboard. For comparing one week with another, it is the wrong tool, because the window will not hold still long enough to be a week. WeekScale is built around calendar weeks on purpose.</p>
-                <div class="guide-principle">
-                    <strong>A finished week is the only week you can compare.</strong>
-                    <span>A rolling window never ends, so it never becomes a week you can set against another.</span>
-                </div>
+                <p>WeekScale groups readings into fixed calendar weeks. For the reasoning behind that choice, see <a class="inline-link" href="/why-calendar-weeks">why WeekScale uses calendar weeks</a>.</p>
             </section>
 
             <section class="prose-section" id="reliability">

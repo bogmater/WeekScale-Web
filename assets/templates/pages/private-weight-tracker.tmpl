@@ -2,18 +2,18 @@
 
 {{define "page:meta"}}
 <meta name="page" content="private-weight-tracker">
-<meta name="description" content="A practical guide to private weight tracking: local storage, accounts, analytics, backups, CSV exports, and the tradeoffs of local-first apps.">
+<meta name="description" content="A practical guide to private, offline weight tracking: local storage, accounts, analytics, backups, CSV exports, and the tradeoffs of local-first apps.">
 <meta property="og:title" content="Private Weight Tracker: What Local-First Really Means">
-<meta property="og:description" content="Understand where weight data is stored, when it can leave a device, and what to check before trusting a weight tracker.">
+<meta property="og:description" content="Understand what offline means, where weight data is stored, when it can leave a device, and what to check before trusting a tracker.">
 <meta property="og:type" content="article">
 <meta name="twitter:title" content="Private Weight Tracker: What Local-First Really Means">
-<meta name="twitter:description" content="A practical privacy checklist for weight-tracking apps.">
+<meta name="twitter:description" content="A practical guide to private, offline weight tracking.">
 {{end}}
 
 {{define "page:main"}}
 <article class="guide" itemscope itemtype="https://schema.org/Article">
     <meta itemprop="datePublished" content="2026-08-16">
-    <meta itemprop="dateModified" content="2026-08-16">
+    <meta itemprop="dateModified" content="2026-08-21">
     <meta itemprop="image" content="{{.SocialImageURL}}">
     <span hidden itemprop="author publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="WeekScale"></span>
 
@@ -30,6 +30,7 @@
         <nav class="contents-nav guide-nav" aria-label="Article sections">
             <span>In this guide</span>
             <a href="#local-first">Local-first</a>
+            <a href="#what-offline-means">What offline means</a>
             <a href="#data-map">Data map</a>
             <a href="#no-account">Accounts and tracking</a>
             <a href="#backups">System backups</a>
@@ -50,6 +51,18 @@
                 <p>For WeekScale, the boundary is the mobile device and the platform services the device owner has enabled. There is no WeekScale account or WeekScale-operated cloud database.</p>
             </section>
 
+            <section class="prose-section" id="what-offline-means">
+                <h2>What offline really means</h2>
+                <p>&ldquo;Offline&rdquo; is only meaningful when it is specific. For a weight tracker it should mean a handful of concrete behaviors:</p>
+                <ul>
+                    <li>The app can do its core job without any server.</li>
+                    <li>No account is required to use it.</li>
+                    <li>No analytics, advertising, or AI service receives your data.</li>
+                    <li>The network permissions and SDKs match the privacy promise.</li>
+                </ul>
+                <p>WeekScale is built to those four points. It is a local-first app, which is a stronger and more specific claim than simply saying it &ldquo;cares about privacy.&rdquo;</p>
+            </section>
+
             <section class="prose-section" id="data-map">
                 <h2>WeekScale's data map</h2>
                 <div class="comparison-table-wrap">
@@ -58,6 +71,8 @@
                         <tbody>
                             <tr><td>Weight entries</td><td>The app's private database on the device.</td></tr>
                             <tr><td>Units, week start, graph, and reminder settings</td><td>Private preferences on the device.</td></tr>
+                            <tr><td>Android internet access</td><td>Not granted &mdash; the app has no internet permission.</td></tr>
+                            <tr><td>iOS network requests</td><td>None. No direct network requests and no third-party runtime dependencies.</td></tr>
                             <tr><td>CSV import</td><td>Read on the device from a file the user selects.</td></tr>
                             <tr><td>CSV export</td><td>Created only after a user action, then shared with an app the user chooses.</td></tr>
                             <tr><td>Reminder scheduling</td><td>Handled through local mobile operating-system facilities.</td></tr>
@@ -77,6 +92,7 @@
 
             <section class="prose-section" id="backups">
                 <h2>Local-first does not mean &ldquo;never included in a backup&rdquo;</h2>
+                <p>Offline is a boundary, not a magic promise. WeekScale keeps the boundary strong; what you do with your own data is up to you.</p>
                 <p>Android system backup and device transfer are intentionally enabled. Depending on the device, Android version, account settings, and backup transport, the app database and preferences may be copied through an Android-managed service.</p>
                 <p>That is not WeekScale cloud synchronization, but it is still a way data can leave the physical device. A credible privacy statement should disclose the distinction. Android documents the platform mechanism in its <a href="https://developer.android.com/identity/data/autobackup" rel="external">Auto Backup guidance</a>.</p>
                 <p>On iOS, Apple-managed device or iCloud Backup may include the private SwiftData store and preferences. CloudKit app synchronization remains disabled. Apple explains how users control this separately in its <a href="https://support.apple.com/guide/iphone/back-up-iphone-iph3ecf67d29/ios" rel="external">iPhone backup guidance</a>.</p>
